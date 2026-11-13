@@ -4,7 +4,7 @@
       "id": "time-attendance",
       "title": "Time & Attendance",
       "description": "Company setup, shifts and rosters, attendance import, corrections, supervisor review, period closing and payroll handoff.",
-      "current": "1.2.0",
+      "current": "1.2.1",
       "path": "modules/time-attendance/",
       "versions": "modules/time-attendance/versions.json"
     }

@@ -32,6 +32,7 @@ docs/                   # GitHub Pages publishing directory
         v1.1.1/
         v1.1.2/
         v1.2.0/
+        v1.2.1/
 
 tools/                  # Builds and checks all registered modules
 modules.json            # Registered documentation modules
@@ -50,7 +51,7 @@ python3 tools/check.py
 
 Commit the source and generated `docs/` files, then push to `main`. GitHub Pages publishes **main /docs** automatically. Verify the deployment before sharing an update.
 
-Each module has its own versions and module-prefixed release tags, for example `time-attendance-guide-v1.2.0`. The earlier `guide-v1.1.2` tag is retained at its original commit.
+Each module has its own versions and module-prefixed release tags, for example `time-attendance-guide-v1.2.1`. The earlier `guide-v1.1.2` tag is retained at its original commit.
 
 To add another module, create its source/assets/build tools under `modules/<module-id>/`, register it in `modules.json`, and have its builder publish into `docs/modules/<module-id>/versions/v<version>/`. The shared builder discovers each registered module's version manifest and updates the module directory.
 

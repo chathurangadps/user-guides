@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="661" viewBox="0 0 1000 661" role="img" aria-labelledby="title desc">
+<title id="title">From schedule to payroll: nine distinct checkpoints</title>
+<desc id="desc">Read left to right, then follow the arrows. Every stage keeps its own status and responsible role. Complete reviewed setup and generate the employee-days expected in the range. Preview, resolve exceptions and import eligible attendance as drafts. Obtain supervisor review, then separate payable decisions. Close the attendance period, stage the approved inputs and obtain independent incidence checking before the normal payroll run.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65748b"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#ffffff"/>
+<g fill="none" stroke="#65748b" stroke-width="2" stroke-linejoin="round">
+<path d="M312,163 L364,163" marker-end="url(#arrow)"/>
+<path d="M636,163 L688,163" marker-end="url(#arrow)"/>
+<path d="M824,226 L824,300" marker-end="url(#arrow)"/>
+<path d="M688,363 L636,363" marker-end="url(#arrow)"/>
+<path d="M364,363 L312,363" marker-end="url(#arrow)"/>
+<path d="M176,426 L176,500" marker-end="url(#arrow)"/>
+<path d="M312,563 L364,563" marker-end="url(#arrow)"/>
+<path d="M636,563 L688,563" marker-end="url(#arrow)"/>
+</g><g font-family="Arial, Helvetica, sans-serif">
+<rect x="40" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="58" y="129" font-size="18" font-weight="700" fill="#352347">Reviewed setup</text>
+<text x="58" y="177" font-size="14" fill="#4e5d72">HR · employees, schedules and</text>
+<text x="58" y="195" font-size="14" fill="#4e5d72">rules</text>
+<rect x="364" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="129" font-size="18" font-weight="700" fill="#352347">Expected days</text>
+<text x="382" y="177" font-size="14" fill="#4e5d72">HR · include days without punches</text>
+<rect x="688" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="129" font-size="18" font-weight="700" fill="#352347">Preview and resolve</text>
+<text x="706" y="177" font-size="14" fill="#4e5d72">Attendance user · source evidence</text>
+<rect x="688" y="300" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="329" font-size="18" font-weight="700" fill="#352347">Import drafts</text>
+<text x="706" y="377" font-size="14" fill="#4e5d72">Attendance user · save native</text>
+<text x="706" y="395" font-size="14" fill="#4e5d72">punches</text>
+<rect x="364" y="300" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="329" font-size="18" font-weight="700" fill="#352347">Supervisor review</text>
+<text x="382" y="377" font-size="14" fill="#4e5d72">Assigned reviewer · approve or</text>
+<text x="382" y="395" font-size="14" fill="#4e5d72">return</text>
+<rect x="40" y="300" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="58" y="329" font-size="18" font-weight="700" fill="#352347">Payable decisions</text>
+<text x="58" y="377" font-size="14" fill="#4e5d72">HR · regular and overtime</text>
+<text x="58" y="395" font-size="14" fill="#4e5d72">separately</text>
+<rect x="40" y="500" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="58" y="529" font-size="18" font-weight="700" fill="#352347">Close attendance period</text>
+<text x="58" y="577" font-size="14" fill="#4e5d72">Period owner · clear readiness</text>
+<text x="58" y="595" font-size="14" fill="#4e5d72">checks</text>
+<rect x="364" y="500" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="529" font-size="18" font-weight="700" fill="#352347">Stage payroll inputs</text>
+<text x="382" y="577" font-size="14" fill="#4e5d72">Payroll maker · Draft incidences</text>
+<rect x="688" y="500" width="272" height="126" rx="10" fill="#eaf6f0" stroke="#39765c" stroke-width="1.5"/>
+<text x="706" y="529" font-size="18" font-weight="700" fill="#23513e">Independent check</text>
+<text x="706" y="577" font-size="14" fill="#4e5d72">Payroll checker · then normal</text>
+<text x="706" y="595" font-size="14" fill="#4e5d72">payroll</text>
+</g></svg>

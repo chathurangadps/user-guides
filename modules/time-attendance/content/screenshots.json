@@ -4,40 +4,40 @@
     "chapter": "work-groups-shifts-and-calendars",
     "title": "Human Resource Calendar: the 2026 year with twelve payroll periods.",
     "caption": "Existing local SLERPTECH capture from the HR calendar validation artifact dated 12 November 2026. The year record is shared at organization *. This screen is a payroll calendar, not a holiday list.",
-    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
-    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+    "publication": "Browser chrome removed. Retains the original company/demo UI context. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image."
   },
   {
     "file": "preview-example.png",
     "chapter": "upload-and-preview-attendance",
     "title": "Preview flags an employee code that does not match the selected organization.",
     "caption": "Historical demo UI; attendance date 6 November 2026. The selected organization cannot resolve the employee, so the group is not ready. Current layouts use row selection and collapsible sections. Capture date is not independently recorded.",
-    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
-    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+    "publication": "Browser chrome removed. Retains the original company/demo UI context. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image."
   },
   {
     "file": "import-result-example.png",
     "chapter": "bulk-import-and-duplicate-protection",
     "title": "Import completion and retained draft state.",
     "caption": "Historical synthetic demo UI; attendance date 6 November 2026. Capture date is not independently recorded. Confirm imported counts and the completion message; import does not approve attendance.",
-    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
-    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+    "publication": "Browser chrome removed. Retains the original company/demo UI context. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image."
   },
   {
     "file": "attendance-record-example.png",
     "chapter": "employee-calendar-and-attendance-review",
     "title": "Native attendance document after import.",
     "caption": "Historical synthetic demo UI; attendance date 6 November 2026. Capture date is not independently recorded. Document numbers and employee data are examples; current field layout may differ.",
-    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
-    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+    "publication": "Browser chrome removed. Retains the original company/demo UI context. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image."
   },
   {
     "file": "roster-rotation.png",
     "chapter": "attendance-roster-setup",
     "title": "Attendance Roster — the Team A rotation and its five cycle lines",
     "caption": "Current SLERPTECH IT3 company master, captured 13 November 2026. This is a draft setup example pending company review, not an approved employee assignment.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Roster header",
@@ -63,8 +63,8 @@
     "chapter": "attendance-policy-setup",
     "title": "Attendance Policy — configured rules and unresolved review fields",
     "caption": "Current IT3 draft policy, captured 13 November 2026 as HR Admin. Zero grace and no rounding are proposals in this master, not Sri Lankan statutory defaults.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Grace and rounding",
@@ -90,8 +90,8 @@
     "chapter": "upload-and-preview-attendance",
     "title": "Attendance Import & Review — start with upload settings, then preview",
     "caption": "Current form at first open, captured 13 November 2026 as HR Admin. No batch is selected in this view, so it does not show an import result.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Upload settings",
@@ -121,8 +121,8 @@
     "chapter": "supervisor-review-and-team-approval",
     "title": "Attendance Reviews — filter, select and review team records",
     "caption": "Current search and review form, captured 13 November 2026. This accessible date scope contains no records. Disabled actions illustrate the unselected state, not a completed approval.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Search filters",
@@ -152,8 +152,8 @@
     "chapter": "attendance-period-close-and-reopen",
     "title": "Attendance Period Control — readiness comes before closing",
     "caption": "Current HR Admin form, captured 13 November 2026 with no selected period. The screenshot shows controls only; no period was created, closed or reopened.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Create period",
@@ -179,8 +179,8 @@
     "chapter": "payroll-handoff-and-independent-checking",
     "title": "Attendance Payroll Handoff — select periods, review units and stage drafts",
     "caption": "Current HR Admin form, captured 13 November 2026. No closed attendance period is selected, so both source previews are empty and staging is disabled. Reconciliation continues below the visible area.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Closed attendance / open payroll period",
@@ -210,8 +210,8 @@
     "chapter": "reports-and-operational-monitoring",
     "title": "Attendance Operations Reports — select a report and inspect the summary",
     "caption": "Current HR Admin report filters and summary, captured 13 November 2026 in the demo company. The selected report is Roster & policy assignment coverage. Its results table is below this crop; open that table to investigate individual findings.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace and report summary only; excludes browser chrome, account header, sidebar and the lower results table.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Organization and report",
@@ -237,8 +237,8 @@
     "chapter": "generate-expected-attendance-and-recalculate",
     "title": "Generate Expected Attendance — include employees who have no punches",
     "caption": "Current process parameters, captured 13 November 2026. Required organization and document type are intentionally unselected; the process was not executed for this capture.",
-    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
-    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot. Reframed for guide 1.2.1 without altering the captured fields, values or workflow state.",
+    "crop": "Only the relevant window content. Browser chrome, account header, Favorites / Recent Items sidebar and the entire iDempiere application tab strip are outside the image.",
     "focus": [
       {
         "control": "Organization",

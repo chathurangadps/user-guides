@@ -1,238 +1,262 @@
 [
   {
     "file": "attendance-record-example.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/attendance-record-example.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      0,
-      123,
-      2560,
-      1409
-    ],
-    "size": [
       2560,
       1286
     ],
-    "validation": "Exact crop of native-decoded source, no resize or redrawing",
-    "sha256": "5ef384ad2acef9e125688382a8082586899a93a9f39c9315a8fecd44712c0503"
+    "crop_box": [
+      600,
+      90,
+      2560,
+      1050
+    ],
+    "size": [
+      1960,
+      960
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "7582b3785b25da824fb226eadd3784f19eccab041cdbd1e8a92becbaeb72ea0d"
   },
   {
     "file": "calendar-2026.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/calendar-2026.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      0,
-      123,
-      2560,
-      1409
-    ],
-    "size": [
       2560,
       1286
     ],
-    "validation": "Exact crop of native-decoded source, no resize or redrawing",
-    "sha256": "46f642764d3b7517866a618debb58094021e37b5da634325cb02f93c0db779db"
+    "crop_box": [
+      600,
+      90,
+      2560,
+      1286
+    ],
+    "size": [
+      1960,
+      1196
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "f6a843e8b78aae451cd2954a281e8336da7b555df0c6919f968d88e782b71699"
   },
   {
     "file": "import-result-example.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/import-result-example.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      0,
-      123,
-      2560,
-      1409
-    ],
-    "size": [
       2560,
       1286
     ],
-    "validation": "Exact crop of native-decoded source, no resize or redrawing",
-    "sha256": "92145e2f79d5f8cf7aee004047bb367de376d3c0cb583f994b42dafdef8c8da4"
+    "crop_box": [
+      600,
+      90,
+      2560,
+      650
+    ],
+    "size": [
+      1960,
+      560
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "b59273c25f44e6ea325ffbdf44408fae1d0dfcba846ec4561c26eb627a07e7ac"
   },
   {
     "file": "preview-example.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/preview-example.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      0,
-      123,
-      2560,
-      1409
-    ],
-    "size": [
       2560,
       1286
     ],
-    "validation": "Exact crop of native-decoded source, no resize or redrawing",
-    "sha256": "ead294feb3eeac0fc7b6c099c523b88803e56da519837479190a19c01f8c039b"
+    "crop_box": [
+      600,
+      90,
+      2560,
+      1100
+    ],
+    "size": [
+      1960,
+      1010
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "c547ff69a893cdcf7843ccd7d15250e6c610cfac30e8f982e0d458c2a3db40b5"
   },
   {
     "file": "roster-rotation.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/roster-rotation.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      1409
-    ],
-    "size": [
       1960,
       1239
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "bc4f8c1d1c6eb6185bd3e58fe938996e220b515f6b0737d5b290179f435a1cfb"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      1239
+    ],
+    "size": [
+      1958,
+      1199
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "58b04d61a01844e28396dd7be64993e552c100be2f6d35fa72b00d59a8cf09d7",
+    "capture_date": "2026-11-13"
   },
   {
     "file": "attendance-policy.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/attendance-policy.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      1409
-    ],
-    "size": [
       1960,
       1239
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "1d34c17c594add796791c92a17a168517747d601c65d13bd52d25f1d9811a3d9"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      1239
+    ],
+    "size": [
+      1958,
+      1199
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "facb2dd87043bc038b8e45395cedbfa2f71809b3222f2fd78ffce854aa0ca07a",
+    "capture_date": "2026-11-13"
   },
   {
     "file": "import-workbench.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/import-workbench.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      1409
-    ],
-    "size": [
       1960,
       1239
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "daea008943c58b5e4fa0e076654854898dd2307a994f6edcfba5eb95715157dd"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      1239
+    ],
+    "size": [
+      1958,
+      1199
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "579372395ea79d80c11fdfbbb0ed726134dce5c8bd495ba575ccad6f9c52ac58",
+    "capture_date": "2026-11-13"
   },
   {
     "file": "attendance-reviews.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/attendance-reviews.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      1409
-    ],
-    "size": [
       1960,
       1239
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "1c46361d795180d4e30ef9c4829010675a50014fd6998f200556cfed2c46d158"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      1239
+    ],
+    "size": [
+      1958,
+      1199
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "ca43a0ecc91b685ab10486897d49cd8984ec47a82544b39fb0f20d6cfe899cc4",
+    "capture_date": "2026-11-13"
   },
   {
     "file": "period-control.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/period-control.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      1409
-    ],
-    "size": [
       1960,
       1239
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "cdd1a9a5193aaedf9982ab7838da647ea6e84e48d14e5fc45092fb373145046c"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      1239
+    ],
+    "size": [
+      1958,
+      1199
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "bf1cbea1b5b94e49182fbdffeadc37f7e219f82f62c152f4e55d7ec30dd72e05",
+    "capture_date": "2026-11-13"
   },
   {
     "file": "payroll-handoff.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/payroll-handoff.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      1409
-    ],
-    "size": [
       1960,
       1239
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "4a1f6a06da86cb984c7b74b90272dfc3aae01faede921a745eb2bd6b768a8877"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      1239
+    ],
+    "size": [
+      1958,
+      1199
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "1d6ea033011117a7816eeec4aa7383ddc6b1b94ca03b7f7333bbc3b30df35360",
+    "capture_date": "2026-11-13"
   },
   {
     "file": "operations-reports.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/operations-reports.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      750
-    ],
-    "size": [
       1960,
       580
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "fd93c89bffef150cb4b9db5990c379cdc86582f1ca488b39c79693ae0bd80efc"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      580
+    ],
+    "size": [
+      1958,
+      540
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "5b0cfd54d0729843e8552b7225020ac84e0b6bf51d5293d7dd19d36892af98e6",
+    "capture_date": "2026-11-13"
   },
   {
     "file": "generate-expected.png",
+    "source_edition": "1.2.0",
+    "source_file": "docs/modules/time-attendance/versions/v1.2.0/assets/screens/generate-expected.png",
     "source_size": [
-      2560,
-      1409
-    ],
-    "crop_box": [
-      600,
-      170,
-      2560,
-      1409
-    ],
-    "size": [
       1960,
       1239
     ],
-    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
-    "capture_date": "2026-11-13",
-    "sha256": "328f407d382d54c447746e432bab2ae8265c03c7afefbf49d654ea3110455d68"
+    "crop_box": [
+      1,
+      40,
+      1959,
+      1239
+    ],
+    "size": [
+      1958,
+      1199
+    ],
+    "validation": "Window-content crop only, using macOS sips native color handling. No resizing, redrawing, blurring or fabricated UI. Excludes sidebar, account header and the entire application tab strip.",
+    "sha256": "04688cd41c4beecb4a7f4597e50d2cf3c44aa9b150040fb1b1240313d10468e6",
+    "capture_date": "2026-11-13"
   }
 ]

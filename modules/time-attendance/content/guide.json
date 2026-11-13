@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "guide_version": "1.2.0",
+    "guide_version": "1.2.1",
     "date": "2026-11-13",
     "plugin_version": "13.0.0.202611130100",
     "dictionary_name": "SLERPTECHAttendanceCapability",
@@ -10,9 +10,9 @@
     "title": "Time & Attendance",
     "status": "Published user guide",
     "changes": [
-      "Added current application screen walkthroughs with field explanations and completion checks.",
-      "Added process diagrams for setup, import, review, corrections, overtime, period close and payroll handoff.",
-      "Added a visual guide index and full-size image viewing; retained all earlier editions."
+      "Reframed all 12 screenshots to show only the relevant iDempiere window content.",
+      "Removed Recent Items, Favorites, account headers and application tab strips from the new edition’s images.",
+      "Added a single-window screenshot capture checklist for future guide updates; preserved earlier editions."
     ]
   },
   "chapters": [
