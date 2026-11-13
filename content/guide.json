@@ -1,0 +1,2754 @@
+{
+  "metadata": {
+    "guide_version": "1.1.2",
+    "date": "2026-11-13",
+    "plugin_version": "13.0.0.202611130100",
+    "dictionary_name": "SLERPTECHAttendanceCapability",
+    "dictionary_version": "1.66.0",
+    "company_packin_name": "SLERPTECHITOperationsMasters",
+    "company_packin_version": "1.0.0",
+    "title": "Time & Attendance",
+    "status": "Published user guide",
+    "changes": [
+      "Published the HTML guide on GitHub Pages with a stable latest-edition link and retained editions 1.1 and 1.1.1.",
+      "Updated the compatibility baseline to SLERPTECHAttendanceCapability 1.66.0, which fixes the roster column registration order during Pack In.",
+      "Retained the four cropped iDempiere screenshots and their historical example captions."
+    ]
+  },
+  "chapters": [
+    {
+      "id": "how-the-module-works",
+      "title": "How the module works",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "All users",
+          "result": "Understand the sequence and the difference between operational and payroll states."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The module preserves recorded punches, builds an expected employee-day from approved setup, and asks the appropriate people to review exceptions. Importing a CSV is the start of processing, not the final attendance approval."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Stage",
+            "Main action",
+            "Result"
+          ],
+          "rows": [
+            [
+              "1 Setup",
+              "Review roster, attendance policy, assignments and calendars",
+              "An employee has an unambiguous schedule and reviewed rules for the work date."
+            ],
+            [
+              "2 Capture",
+              "Upload and preview CSV; generate expected attendance",
+              "Recorded punches and no-punch days can be compared with expectations."
+            ],
+            [
+              "3 Resolve",
+              "Correct mappings or timestamps; obtain approved employee corrections",
+              "Exceptions retain a reason and a trace to original evidence."
+            ],
+            [
+              "4 Import",
+              "Review import and confirm the ready groups",
+              "Native attendance batches and punches are saved as drafts."
+            ],
+            [
+              "5 Review",
+              "Employee or authorized HR submits; supervisor approves or returns",
+              "Attendance review decision is recorded separately from document status."
+            ],
+            [
+              "6 Prepare pay",
+              "Review overtime and regular payable quantities",
+              "Approved quantities have separate HR decisions and references."
+            ],
+            [
+              "7 Close",
+              "Resolve readiness blockers and close the attendance period",
+              "A controlled snapshot protects the reviewed period."
+            ],
+            [
+              "8 Handoff",
+              "Stage payroll incidences and obtain independent checking",
+              "Native incidences are available for the normal payroll workflow."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "What the statuses do not mean",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "**Preview** saves or refreshes review information; it does not create payable attendance.",
+            "**Imported** means punches were saved. The native document can still be Draft and unprocessed.",
+            "**Supervisor approved** records acceptance of the attendance evidence. It does not complete payroll documents.",
+            "**Closed period** protects attendance decisions. Payroll handoff and incidence approval follow separately.",
+            "**Completed payroll incidence** is an input to payroll. It is not proof that a payroll run was calculated, finalized or paid."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "check",
+          "text": "Always verify the status at the stage you completed. Do not use one green count or one approval as evidence that the entire chain has finished."
+        }
+      ]
+    },
+    {
+      "id": "roles-and-access",
+      "title": "Roles and access",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Administrators and team leads",
+          "result": "Provide scoped access and preserve independent review."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Responsibility",
+            "Typical work",
+            "Required scope"
+          ],
+          "rows": [
+            [
+              "Employee",
+              "View own calendar; submit attendance; request corrections and overtime",
+              "Own linked employee and allowed self-service actions"
+            ],
+            [
+              "Supervisor or approved delegate",
+              "Review assigned employees; approve or return; authorize overtime",
+              "Assigned team, dates, organizations and review actions"
+            ],
+            [
+              "Attendance operator",
+              "Upload CSV, preview, resolve source exceptions, import drafts",
+              "Authorized HR role with organization and source record access"
+            ],
+            [
+              "HR maker",
+              "Create setup proposals, payable drafts and assisted requests",
+              "Configured HR role and relevant windows/forms"
+            ],
+            [
+              "Independent HR reviewer",
+              "Approve setup, assignments, routes and payable proposals",
+              "Different authorized user where maker/checker rules apply"
+            ],
+            [
+              "Payroll checker",
+              "Review and complete staged incidences",
+              "Configured payroll reviewer role and native incidence access"
+            ],
+            [
+              "System administrator",
+              "Install packages, manage access, configure integrations and schedules",
+              "Technical administration; does not replace employee identity or supervisor assignment"
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Access setup checklist",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Confirm the user is active and has active membership of the selected role.",
+            "Grant the required form, process, window and table access. A visible menu alone does not grant its underlying record access.",
+            "Grant the intended organization access, including write access where the action creates or changes records. Check both the HR employee and linked business partner organization.",
+            "Link each self-service user to the correct employee/business partner. Verify the employee user’s Supervisor.",
+            "Configure the authorized HR and payroll role lists using role IDs. Apply record restrictions for employee and supervisor access.",
+            "After role or dictionary changes, reset the application cache as appropriate, sign out, sign in again with the intended role, and reopen the form."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Approval identity",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "A supervisor decision must be made by the assigned supervisor or a valid approved delegate. Self-approval is blocked. HR administrator access does not automatically make an administrator the employee or the assigned supervisor. A second HR reviewer is required for the protected maker/checker decisions."
+        },
+        {
+          "kind": "check",
+          "text": "Test with an employee account, a supervisor account and an HR account. Confirm each can perform its intended action and cannot view or decide unrelated employee records."
+        }
+      ]
+    },
+    {
+      "id": "navigation-and-standard-windows",
+      "title": "Navigation and standard windows",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "All users",
+          "result": "Find the correct entry point and use standard iDempiere controls."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Start under **Human Resource & Payroll → Time and Attendance Record**, or search the menu by the exact screen name. Visibility depends on the role. Standard dictionary windows use the same toolbar, record navigation, single-record view and child tabs as common iDempiere windows such as Invoice."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Use the menu search to find the required window, form or process.",
+            "In a standard window, use New to create a draft record. Complete required fields marked with an asterisk, then Save.",
+            "Use the grid/single-record toggle to switch between a list and the full record. A record count of 0/0 means no selected record; its disabled fields do not necessarily indicate a permissions problem.",
+            "Save a parent record before adding child rows, such as Cycle Lines or Break Intervals.",
+            "Use section headings to expand or collapse field groups. Scroll within long forms and child grids.",
+            "Use the custom review forms for approvals and controlled transitions. Read-only audit windows are intentionally not data-entry screens."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Use the action form for the action",
+          "level": 2
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "To do this",
+            "Open"
+          ],
+          "rows": [
+            [
+              "Upload, validate and import CSV",
+              "Attendance Import & Review"
+            ],
+            [
+              "Review submitted attendance",
+              "Attendance Reviews"
+            ],
+            [
+              "Propose corrected punches",
+              "Attendance Corrections custom form"
+            ],
+            [
+              "Approve policy or roster drafts",
+              "Attendance Assignment Review"
+            ],
+            [
+              "Generate no-punch employee-days",
+              "Generate Expected Attendance process"
+            ],
+            [
+              "Refresh changed employee-days",
+              "Recalculate Attendance Queue"
+            ],
+            [
+              "Close or reopen a period",
+              "Attendance Period Control"
+            ],
+            [
+              "Prepare payroll transfer",
+              "Attendance Payroll Handoff custom form"
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Some underlying windows share the name of a custom form. The custom form has action buttons and explanatory text. The record window has the standard iDempiere toolbar and is mainly for inspecting records or creating permitted setup drafts."
+        },
+        {
+          "kind": "check",
+          "text": "If the menu is absent, ask an administrator to check the installed dictionary version, active menu and form/process, menu tree and role access. Do not create duplicate menus to compensate for stale access."
+        }
+      ]
+    },
+    {
+      "id": "first-time-setup-sequence",
+      "title": "First time setup sequence",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR setup owner and independent reviewer",
+          "result": "Make a controlled population ready for attendance processing."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Prepare employee records, employment dates, organization, work group, department, employee code, user link and supervisor.",
+            "Create or verify Work Group, Shift Group and Work Shift. Add the company holiday calendar and reviewed holiday classifications.",
+            "Create an Attendance Roster with a fixed week or a rotation, break intervals, timezone and punch boundaries.",
+            "Create the Attendance Policy and record the company decisions for grace, rounding, breaks, payable units and other applicable rules.",
+            "Approve configuration versions in Attendance Assignment Review using an independent HR reviewer.",
+            "Create effective-dated Roster Assignments, Policy Assignments and Employment Legal Regime Assignments. Review and approve them.",
+            "Provide approved delegations or fallback routes where required. Confirm employee and supervisor access.",
+            "Verify an attendance document type and its numbering, and the operator’s organization access.",
+            "Run assignment, supervisor and legal coverage reports for a small date range.",
+            "Generate expected attendance for that range. Resolve setup conflicts before the first live CSV import."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Recommended first pilot",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use a small, known employee group and one completed workday. Verify a normal workday, a rest day, a holiday, an approved leave day, a missing punch and a person with no punches. Expand only after the expected results and approval routes are understood."
+        },
+        {
+          "kind": "heading",
+          "text": "Attendance policy and leave policy are different",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "A leave policy controls leave eligibility, credit and leave requests. An attendance policy controls the reviewed attendance rules and payable-unit decisions. The attendance roster provides the work schedule. Assigning a leave policy does not, by itself, finish attendance setup. Older preview paths may mention a leave-policy assignment; check the active attendance roster/policy configuration as well as the leave assignment needed for leave integration."
+        },
+        {
+          "kind": "check",
+          "text": "Coverage reports should show a unique applicable schedule and policy for each employee/date. A checkbox marked Active is not a substitute for independent review or date coverage."
+        }
+      ]
+    },
+    {
+      "id": "slerptech-three-shift-company-setup",
+      "title": "SLERPTECH three-shift company setup",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR setup owner and independent reviewer",
+          "result": "Understand the prepared masters and complete the remaining operational setup."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The company package installs draft masters in SLERPTECH (PVT) LTD, under IT & Internal Systems (DEPT-IT). It does not create another tenant or assign employees to teams. These are company proposals for IT operations, not a declaration that every night-work or payroll rule is approved."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Shift",
+            "Working span",
+            "Unpaid break",
+            "Recorded punches"
+          ],
+          "rows": [
+            [
+              "Day",
+              "06:00–14:00",
+              "10:00–11:00",
+              "06:00 / 10:00 / 11:00 / 14:00"
+            ],
+            [
+              "Evening",
+              "14:00–22:00",
+              "18:00–19:00",
+              "14:00 / 18:00 / 19:00 / 22:00"
+            ],
+            [
+              "Night",
+              "22:00–06:00 next day",
+              "02:00–03:00 next day",
+              "22:00 / 02:00 / 03:00 / 06:00"
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Each shift spans eight hours with seven net working hours and one proposed unpaid break. Five teams rotate through Day → Evening → Night → Off → Off, with phased starting points. The cycle anchor is 16 November 2026, the timezone is Asia/Colombo, and the draft assignments end on 31 December 2026. Continuous service needs break relief."
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "items": [
+            "Check the three Work Shift records (SHRP_LK_IT3_D, SHRP_LK_IT3_E, SHRP_LK_IT3_N), shift group and five team work groups.",
+            "Open each IT3 — Team A/B/C/D/E Rotation roster. Review cycle lines, breaks, calendar, workday boundary and punch tolerances.",
+            "Review the attendance policy, legal applicability, night-work requirements and sourced company decisions through the controlled review workflow. The initial drafts deliberately do not assert approvals.",
+            "Assign each employee to the correct team after checking identity, supervisor and organization. Review effective roster/policy/legal assignments and remove ambiguity through supported workflows.",
+            "Check Human Resource Calendar > Year > Period for the shared 2026 payroll structure. Maintain holidays through the roster holiday calendar.",
+            "Generate expected days over a complete rotation. Preview representative day, evening and night punches and confirm that next-day checkout stays with the original night shift date.",
+            "Validate employee and supervisor access, correction handling and duplicate protection before routine imports."
+          ]
+        },
+        {
+          "kind": "check",
+          "text": "Five approved and correctly phased rosters, reviewed effective assignments and explicit employee team membership are required before normal processing. The package alone does not activate payroll or authorize overtime."
+        }
+      ]
+    },
+    {
+      "id": "employee-and-supervisor-master-data",
+      "title": "Employee and supervisor master data",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR administrator",
+          "result": "Ensure each punch resolves to the intended employee and each request reaches the correct reviewer."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Record or field",
+            "What to verify"
+          ],
+          "rows": [
+            [
+              "Employee business partner",
+              "Active, Employee selected, correct identity and organization."
+            ],
+            [
+              "Payroll Employee or Personal Detail",
+              "Active employment record with correct business partner, organization, department and work group."
+            ],
+            [
+              "Employee code",
+              "CSV Code resolves to the HR employee Code. Do not assume a user login or business partner search key is the same value."
+            ],
+            [
+              "Start and end dates",
+              "Employment covers the work date. An ended or inactive employment must not be silently reused."
+            ],
+            [
+              "Employee status",
+              "Employee is in the supported active employment status for the selected date/population."
+            ],
+            [
+              "User link",
+              "Self-service account belongs to the employee. Do not leave a generic SuperUser link on employee records."
+            ],
+            [
+              "Supervisor",
+              "Employee user’s Supervisor points to the intended active approver with review access."
+            ],
+            [
+              "Organization access",
+              "Operator and reviewer have the needed organization and record scope."
+            ]
+          ]
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Search for the employee in the employee/payroll employee window and verify the linked business partner.",
+            "Check Code against the source attendance file. For a persistent code problem, correct the authoritative employee mapping after verifying identity; for a one-off file alias, use the batch mapping action.",
+            "Confirm employment dates and active status. Review organization and work group rather than moving unrelated employees simply to make a file import.",
+            "Open the linked User and verify Supervisor. Make the supervisor’s required role and organization access effective.",
+            "Run Employee supervisor coverage and Roster & policy assignment coverage reports for the intended import dates."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "check",
+          "text": "One source code resolves to exactly one eligible employee in the selected work organization. A valid user account alone is not an HR employment record."
+        }
+      ]
+    },
+    {
+      "id": "work-groups-shifts-and-calendars",
+      "title": "Work groups shifts and calendars",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR setup owner",
+          "result": "Maintain the reusable schedule and calendar building blocks."
+        },
+        {
+          "kind": "heading",
+          "text": "Work Group and Shift Group",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use Work Group for employees who share scheduling rules. Shift Group and its schedules remain supporting master data; the effective Attendance Roster and its reviewed assignments determine the modern attendance expectation. Keep the employee’s group and the assigned roster consistent."
+        },
+        {
+          "kind": "heading",
+          "text": "Work Shift",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Create or open the intended shift. Give it a clear name and search key.",
+            "Set the shift times and the organization according to the company schedule.",
+            "For the SLERPTECH office example, the span is 08:30–17:30. Record the one-hour lunch in the roster break configuration; do not represent nine elapsed hours as nine payable work hours.",
+            "Save and use this shift in the fixed roster or appropriate rotation lines.",
+            "Validate an overnight shift through the roster workday boundary and punch window, including next-day end time."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Human Resource Calendar: payroll years and periods",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "items": [
+            "Open Human Resource Calendar in the SLERPTECH tenant and select SHRP_LK_HR — SLERPTECH Human Resource Calendar. Organization * makes this a shared tenant calendar.",
+            "Open Year, select 2026 and verify the payroll and linked financial year. The prepared year has Start Date 1 January 2026, Quantity 12 and Net Days 30. Net Days is the configured payroll basis, not the number of days in every month.",
+            "Open Period and verify all twelve monthly periods: January through December, correct start/end dates and no overlap. The company package fills missing months and preserves the existing October–December entries.",
+            "Use the same HR calendar for the company payroll year across the three shift teams. Opening or closing accounting periods and executing payroll are separate operations.",
+            "Prepare the next year explicitly before using dates outside 2026; this release does not create a 2027 HR year."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Holiday calendar: attendance non-working dates",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "items": [
+            "Maintain actual holiday dates in the holiday calendar referenced by Attendance Roster. The prepared three-shift rosters reference SLERPTECH LK Office Holidays 2026. This is separate from HR Calendar > Year > Period.",
+            "Verify dates and applicability against the approved company source. Create Attendance Holiday Classifications with a source reference and work group where needed.",
+            "Have an independent authorized reviewer approve the classifications in Attendance Assignment Review and review the roster calendar reference."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Supported holiday labels include Poya, statutory, bank-only, company and other. A bank-only label does not automatically make the date a non-working day for every employee. Holiday classification is evidence for the company’s reviewed treatment; it does not calculate holiday pay."
+        },
+        {
+          "kind": "check",
+          "text": "Generate expectations for a known workday, a weekend/rest day and a known holiday. Confirm the displayed classification matches the assigned roster and calendar."
+        }
+      ]
+    },
+    {
+      "id": "attendance-roster-setup",
+      "title": "Attendance roster setup",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR maker and independent reviewer",
+          "result": "Define a versioned fixed or rotating work pattern."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Field group",
+            "How to complete it"
+          ],
+          "rows": [
+            [
+              "Identity",
+              "Organization, Name, Version, Active and a useful Description."
+            ],
+            [
+              "Schedule",
+              "Schedule Type, Work Group, Work Shift and Working Week for a fixed schedule; Cycle Start Date and Cycle Length Days for a rotation."
+            ],
+            [
+              "Timezone and holidays",
+              "Time Zone as a valid IANA name, Holiday Calendar and Calendar Source Ref. Use Asia/Colombo for a reviewed Sri Lankan work schedule."
+            ],
+            [
+              "Breaks",
+              "Scheduled Break, Break Duration and Break Starts After; explicit Break Treatment State and Break Treatment."
+            ],
+            [
+              "Workday boundaries",
+              "Workday Starts At, Max Shift Minutes, Punch Before Minutes and Punch After Minutes. These determine which shift/day can accept a punch."
+            ],
+            [
+              "Company review",
+              "Five Day Workweek and Night Work review state, source reference and valid-from/to dates where applicable."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Fixed week example",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Create a draft Attendance Roster and choose the fixed schedule type.",
+            "Select the office work shift. Set Working Week (Mon–Sun) to 1111100 for Monday through Friday.",
+            "Set the reviewed timezone and calendar.",
+            "For a lunch from 12:30 to 13:30 on an 08:30 start, the example break starts 240 minutes after shift start and lasts 60 minutes. Select the reviewed unpaid treatment.",
+            "Complete punch tolerances and review references from company decisions. Do not copy arbitrary grace or boundary values from a demonstration.",
+            "Save, then have the independent reviewer approve the selected roster in Attendance Assignment Review."
+          ],
+          "ordered": true
+        }
+      ]
+    },
+    {
+      "id": "roster-cycles-breaks-and-overnight-work",
+      "title": "Roster cycles breaks and overnight work",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR schedule owner",
+          "result": "Model complete rotations and verify work that crosses midnight."
+        },
+        {
+          "kind": "heading",
+          "text": "Build every cycle day",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "For a rotation, specify a cycle start and a cycle length, then add a Cycle Line for every day offset. Offset 0 is the first cycle day. Mark each offset as work or rest and choose a shift for workdays. A seven-day cycle needs offsets 0 through 6; a rest day still needs its line. The current implementation supports cycles up to 42 days."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Save the roster parent before entering Cycle Lines.",
+            "Add each offset once, starting at zero and ending at cycle length minus one.",
+            "Select Is Work Day and the intended shift on working offsets. Enter explicit rest-day lines for the remaining offsets.",
+            "Check a date in the second repetition of the cycle, not only the first week.",
+            "Review the roster version and its effective assignment before generating employee-days."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Overnight example",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "For overnight work, define the schedule and workday boundary so an end punch after midnight belongs to the shift’s work date. Review applicable night-work requirements and effective dates. Keep both sides of midnight in the same resolved shift evidence."
+        },
+        {
+          "kind": "paragraph",
+          "text": "For example, a reviewed shift that starts on Monday evening and ends on Tuesday morning should retain actual timestamps on both dates, while belonging to the resolved Monday workday. Do not replace the Tuesday end date with Monday to make the CSV fit. Review the maximum shift length and before/after punch windows for this schedule."
+        },
+        {
+          "kind": "heading",
+          "text": "Break Intervals child tab",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "The main roster supplies the first scheduled break. Use Break Intervals for additional numbered breaks, with an offset from shift start and duration. Keep breaks ordered, within the shift and non-overlapping. Expected punch counts depend on the resolved schedule and break configuration; four punches are the office example, not a universal rule."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Check",
+            "Expected outcome"
+          ],
+          "rows": [
+            [
+              "All cycle offsets present",
+              "Every day resolves to work or rest without an omitted cycle line."
+            ],
+            [
+              "Midnight crossing",
+              "End punches remain on their true date and map to the intended workday."
+            ],
+            [
+              "Breaks inside shift",
+              "No overlap, negative duration or interval outside the scheduled span."
+            ],
+            [
+              "Review dates cover the day",
+              "Applicable company/night-work reviews and assignment dates remain effective."
+            ]
+          ]
+        },
+        {
+          "kind": "check",
+          "text": "Reviewed configuration is protected. Create a new version for a change, then create the required effective assignments. Check the resulting employee-day before using it for import."
+        }
+      ]
+    },
+    {
+      "id": "attendance-policy-setup",
+      "title": "Attendance policy setup",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR policy owner and independent reviewer",
+          "result": "Record the company’s explicit attendance rules."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Policy fields",
+            "User decision"
+          ],
+          "rows": [
+            [
+              "Name, Version, Organization, Description",
+              "Identify the company policy and the version being reviewed."
+            ],
+            [
+              "Late Grace State and Minutes",
+              "Record whether a late grace rule is reviewed and the approved minutes."
+            ],
+            [
+              "Early Grace State and Minutes",
+              "Record the reviewed early-departure grace decision separately."
+            ],
+            [
+              "Rounding State and Minutes",
+              "Record the reviewed rounding decision. Do not use a default to imply approval."
+            ],
+            [
+              "Break Treatment State and Treatment",
+              "Record the approved paid/unpaid or other supported treatment."
+            ],
+            [
+              "Overtime Rule State and Ref",
+              "Reference the applicable approved company/legal rule. Worked time alone is not payable overtime."
+            ],
+            [
+              "Payable Unit State and Unit",
+              "Review whether regular quantities use days, hours or minutes."
+            ],
+            [
+              "Absence Review State and Source Ref",
+              "Record the authority for HR’s manual absence review."
+            ],
+            [
+              "Policy Source Ref",
+              "Link the governing company policy or approved review record."
+            ]
+          ]
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Create a draft Attendance Policy with an identifiable version.",
+            "Enter the applicable reviewed decisions and supporting references. Leave unresolved matters explicitly unreviewed until the policy owner decides them.",
+            "Save and open Attendance Assignment Review → Policies.",
+            "A different configured HR reviewer selects the draft, checks the details, records the review reason/reference and chooses Approve selected policy.",
+            "Assign the approved version using Policy Assignments and verify the effective dates."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "paragraph",
+          "text": "Approval does not silently fill unresolved values. An unreviewed rule can still block the operation that depends on it. Do not interpret a timing flag as permission to deduct pay or to declare an absence."
+        },
+        {
+          "kind": "check",
+          "text": "The approved policy is available for the intended assignment and the coverage report shows the expected version for the work date."
+        }
+      ]
+    },
+    {
+      "id": "assignments-legal-coverage-and-routing",
+      "title": "Assignments legal coverage and routing",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR maker and independent reviewer",
+          "result": "Give each employee an effective schedule, policy and approval route."
+        },
+        {
+          "kind": "heading",
+          "text": "Roster and policy assignments",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Roster Assignments or Policy Assignments and create a draft.",
+            "Select the assignment type, employee or work group as applicable, and the reviewed roster/policy version.",
+            "Enter Valid From and Valid To to cover the intended work dates. Use meaningful names such as the team, policy and effective period.",
+            "Save. A different authorized HR user opens Attendance Assignment Review → Assignments, selects the row and enters the decision reason.",
+            "Choose Approve selected assignment. Use Void selected assignment with a reason to retire an incorrect assignment through the controlled workflow.",
+            "Run coverage for the date range and resolve missing or overlapping matches."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "paragraph",
+          "text": "Roster resolution gives a temporary employee assignment precedence over an employee assignment, and an employee assignment precedence over an approved work-group default. Ambiguity at the winning level is blocked; the system does not choose randomly between competing assignments."
+        },
+        {
+          "kind": "heading",
+          "text": "Employment Legal Regime Assignments",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Record the employee or group, effective dates, regime code/name, applicability, legal source reference and rationale. Have the assignment independently reviewed. Applicability must come from the company’s HR/legal decision; the application does not infer a legal regime from a job title or nationality."
+        },
+        {
+          "kind": "heading",
+          "text": "Delegations and fallback routes",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "For a temporary supervisor absence, create Attendance Delegations with the supervisor, delegate and effective dates.",
+            "An independent HR reviewer approves the delegation in Attendance Assignment Review → Supervisor delegations.",
+            "If no usable supervisor or delegate exists, an authorized HR maker can create a sourced fallback route in the review form, scoped to a work group or organization and effective dates.",
+            "A different HR reviewer approves the fallback route. The direct supervisor/delegation takes precedence; a work-group fallback is considered before an organization default.",
+            "Recheck the reviewer on the actual request. Avoid self-approval and overlapping or stale routes."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "check",
+          "text": "The assigned reviewer is the intended person for the date and organization. Access rights and a routing record must both be valid."
+        }
+      ]
+    },
+    {
+      "id": "prepare-an-attendance-csv",
+      "title": "Prepare an attendance CSV",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Attendance operator",
+          "result": "Produce a file that the custom importer can validate without ambiguity."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use a UTF-8, comma-separated file containing exactly two columns: **Code,AttendanceTime**. Use one row per recorded punch. The optional first header line is recognized; including it is recommended. Each timestamp uses a 24-hour time and seconds: yyyy-MM-dd HH:mm:ss."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Code",
+            "AttendanceTime"
+          ],
+          "rows": [
+            [
+              "Deepal",
+              "2026-11-06 08:30:00"
+            ],
+            [
+              "Deepal",
+              "2026-11-06 12:30:00"
+            ],
+            [
+              "Deepal",
+              "2026-11-06 13:30:00"
+            ],
+            [
+              "Deepal",
+              "2026-11-06 17:30:00"
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Example only:** Deepal must be the verified HR employee Code in the selected organization. These four synthetic punches illustrate an office day with a one-hour lunch. They are not evidence that this employee actually attended on this date."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Save as CSV UTF-8, not XLSX renamed to CSV. Use commas, not a regional semicolon delimiter.",
+            "Use the exact employee code. Avoid leading or trailing spaces in timestamps and avoid Excel serial dates or timezone suffixes.",
+            "Do not add employee names, IN/OUT labels, department columns or blank separator rows to this format.",
+            "Include complete actual punches for each workday. Missing or extra distinct punches are reviewed against the schedule.",
+            "Keep the file within 2 MiB. The default configured row limit is 5,000; administrators may configure a supported limit up to 20,000.",
+            "Split by work organization and a manageable date range. Preview also bounds the employee population and total employee-days."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "heading",
+          "text": "Before upload",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Confirm that the From date and To date cover the intended work dates, including the roster rules for an overnight shift. Review the company’s timezone. Keep the original export unchanged so later corrections can be traced to it."
+        },
+        {
+          "kind": "check",
+          "text": "Open the CSV in a plain text viewer and confirm the first few lines contain two values with exact timestamps. For demo files, select Synthetic demo data when uploading."
+        }
+      ]
+    },
+    {
+      "id": "upload-and-preview-attendance",
+      "title": "Upload and preview attendance",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Attendance operator",
+          "result": "Save an upload and see which employee-days are ready or need attention."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Import & Review and expand Upload settings.",
+            "Select Work organization. Choose the organization containing the HR employee records for this file.",
+            "Set From date and To date, and choose the attendance document type, for example the configured SLERPTECH Attendance type.",
+            "For synthetic test punches, select Synthetic demo data — prevent supervisor submission.",
+            "Choose Upload CSV and select the prepared file. Read any parsing error before continuing.",
+            "Choose Preview / Refresh. Review the batch name, date range, version and summary.",
+            "Use Resume recent upload in selected organization to reopen a saved batch later. Use New upload when starting a different file."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "What preview compares",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Preview resolves employee identity, active employment and organization, roster/policy coverage, the working day and breaks, holidays, approved leave, staged rows, saved punches and duplicate receipts. It also includes expected employees with no punches, subject to the selected population and date range."
+        },
+        {
+          "kind": "heading",
+          "text": "Reading the grid",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Each normal row represents an employee-day. Invalid source rows may appear as source groups rather than valid employee-days.",
+            "Use status, employee/code, department and issue-type filters to focus on exceptions. Page size controls the display, not the total import scope.",
+            "Click a column heading to sort. Resize column boundaries or use Fit columns where available. Use horizontal scrolling for long punch or validation text.",
+            "Click a row to open its detail pane. The grid can collapse to make room for source data, correction controls and history. Close details to return to the list.",
+            "Expand Batch overview and filters when you need the full counts or to change filters. Hover the small information icons for task help."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "check",
+          "text": "There is a current preview, the correct organization/date range, and understandable ready/attention/imported counts. Review the issue list before confirming any import."
+        }
+      ]
+    },
+    {
+      "id": "resolve-validation-and-import-exceptions",
+      "title": "Resolve validation and import exceptions",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Attendance operator and HR",
+          "result": "Turn correctable evidence into ready employee-days while preserving unresolved items."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Displayed state",
+            "Meaning and next action"
+          ],
+          "rows": [
+            [
+              "READY",
+              "Current evidence passes import validation. It can be included in Review import."
+            ],
+            [
+              "UNMATCHED",
+              "Code does not resolve uniquely to an active eligible employee in the selected organization. Verify employee data or map the code for this batch."
+            ],
+            [
+              "INVALID",
+              "Source format, timestamp or date scope is invalid. Correct the source timestamp with a reason, or use the correct upload/date range."
+            ],
+            [
+              "PUNCH_ISSUE",
+              "Distinct punch count or intervals do not match expectations. Check missing, repeated or extra times and approved partial leave."
+            ],
+            [
+              "SETUP",
+              "Roster, policy, calendar, review or assignment coverage is missing/conflicting. Correct setup and revalidate."
+            ],
+            [
+              "MISSING",
+              "Expected work has no uploaded or saved attendance. Investigate; this is not a confirmed absence."
+            ],
+            [
+              "CONFLICT or VARIANCE",
+              "Sources disagree or saved attendance needs review. Read the full message and reconcile the correct source."
+            ],
+            [
+              "IMPORTED or RECORDED",
+              "Attendance was already imported or is present in saved records. Inspect the record and review status; do not manufacture a second copy."
+            ],
+            [
+              "LEAVE, OFF, HOLIDAY or FUTURE",
+              "Calendar/leave/date context affects expectation. These labels are not an instruction to import or deduct pay."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Batch mapping",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Select the unmatched code row, choose the verified employee under Map CSV code to employee, enter a correction/mapping reason, and choose Save mapping & revalidate. The mapping applies to this batch. Do not map several people’s codes to one employee to remove error counts."
+        },
+        {
+          "kind": "heading",
+          "text": "Timestamp correction and evidence punches",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "For an incorrect unimported source row, select its Stage/source row, enter the correct full timestamp and a reason, then choose Correct timestamp & revalidate. For a genuinely missing punch supported by evidence, use Add evidence punch with its timestamp and reason. Repeat only for the actual missing times. Entering the same 17:30 time repeatedly still provides only one distinct punch."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Keep the reason specific, such as a reviewed clock export line or approved case reference. Blank reasons are rejected. Original source values and the audit trail remain available; a correction is not permission to invent attendance."
+        },
+        {
+          "kind": "check",
+          "text": "Re-preview after every setup or evidence change. Confirm the intended employee-day moves to READY and other unresolved records remain visible for follow-up."
+        }
+      ]
+    },
+    {
+      "id": "bulk-import-and-duplicate-protection",
+      "title": "Bulk import and duplicate protection",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Attendance operator",
+          "result": "Import all valid work efficiently and know exactly what succeeded."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Refresh the saved batch and review the ready and unresolved counts.",
+            "Choose Review import. This reviews **all ready employee-days in the saved batch**, across pages and regardless of the current search/filter display.",
+            "Read the confirmation counts and scope. If they are not what you intend, cancel and investigate before proceeding.",
+            "Choose Import ready drafts to confirm. The operation revalidates the reviewed sources; changes since preview can invalidate confirmation.",
+            "Read the completion message and refresh the batch. Open representative Attendance Record documents to verify employee, work date, shift and punches.",
+            "Download issue list for the remaining exceptions and continue resolving them by category. Re-preview and import additional ready groups when corrected."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "How to know it succeeded",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "The result reports imported employee-days and punches, and the summary reflects the saved outcome.",
+            "The intended records exist in Attendance Record with their actual punch lines.",
+            "Their native document status remains Draft/unprocessed until the separate authorized workflow changes it.",
+            "Unresolved groups remain in the saved batch and are not silently treated as present or absent.",
+            "A retry or duplicate upload does not create duplicate punches already protected by import receipts."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "heading",
+          "text": "Why Review import is disabled",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "A common reason is **zero ready employee-days**. A selected grid row is not enough: it must pass validation, and there must be a current valid preview. Check PUNCH_ISSUE, SETUP and other attention rows, then refresh. Missing access or a stale review can also prevent the action."
+        },
+        {
+          "kind": "heading",
+          "text": "Two different bulk scopes",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Import uses every READY group in the saved batch regardless of filters. Bulk supervisor approval, described later, uses the selected **date/search/department scope** and only eligible submitted records. Always read the confirmation for the specific operation."
+        },
+        {
+          "kind": "check",
+          "text": "Re-upload the same test file only in a controlled demo to verify duplicate protection. The expected result is no second set of saved punches, not a second successful allocation of attendance."
+        }
+      ]
+    },
+    {
+      "id": "generate-expected-attendance-and-recalculate",
+      "title": "Generate expected attendance and recalculate",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR attendance operator",
+          "result": "Find employees with no punches and keep expectations current after source changes."
+        },
+        {
+          "kind": "heading",
+          "text": "Generate Expected Attendance",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Generate Expected Attendance.",
+            "Select Organization, From date, To date and Attendance document type. The manual process accepts a range of 1–31 days.",
+            "Run the process and read counts for expected employee-days, missing attendance and setup issues.",
+            "Open Attendance Import & Review and resume the generated source-free batch.",
+            "Resolve missing setup and investigate no-punch days. Do not add synthetic punches simply to make a missing row disappear."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "paragraph",
+          "text": "Expected generation creates review snapshots; it does not create actual punches. Repeat generation with unchanged inputs is repeat-safe. Ensure the HR role can see the complete intended population, particularly before period close."
+        },
+        {
+          "kind": "paragraph",
+          "text": "You can also use Generate expected days in Attendance Import & Review after selecting the organization, date range and attendance document type. This provides the source-free review path without preparing an empty CSV."
+        },
+        {
+          "kind": "heading",
+          "text": "Recalculate Attendance Queue",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "After a relevant roster, policy, employment, calendar or leave change, open Recalculate Attendance Queue.",
+            "Select the organization and attendance document type, then Refresh queue.",
+            "Select a pending employee/date and choose Recalculate selected employee/date.",
+            "Review the refreshed employee-day and resolve its exceptions. A changed day is reopened for supervisor review.",
+            "Check that pending queue items are cleared before closing the period."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "paragraph",
+          "text": "Previous revisions remain available. A later return to an earlier configuration still creates a new revision when the source history changed. Do not assume an old supervisor approval remains valid after the underlying expectation changes."
+        },
+        {
+          "kind": "check",
+          "text": "The current employee-day references the intended inputs, pending recalculation is resolved, and any required renewed review is completed."
+        }
+      ]
+    },
+    {
+      "id": "employee-calendar-and-attendance-review",
+      "title": "Employee calendar and attendance review",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Employee",
+          "result": "Check personal attendance and send a completed workday for review."
+        },
+        {
+          "kind": "heading",
+          "text": "My Calendar",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Open My Calendar to view your own planned leave, taken leave, holidays and attendance. Choose the displayed date/month controls and refresh after a change. Planned or approved leave and actual taken leave are different states. Attendance shown on the calendar is not proof of payroll approval."
+        },
+        {
+          "kind": "heading",
+          "text": "Submit an attendance day",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Sign in as the employee using the self-service role and open Attendance Reviews.",
+            "Enter the date range and use Search / refresh. Select the intended attendance record.",
+            "Read the displayed date, punches, review status, revision and history. Check that the record is yours and reflects the actual day.",
+            "If correct, enter the required submission comment and choose Submit to supervisor.",
+            "Confirm the status changes to the submitted state and the assigned reviewer is correct.",
+            "If a submitted record needs correction before a decision, use Withdraw submission when available, with a reason. Use Attendance Corrections for an actual punch change."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "When controls are unavailable",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "The action buttons depend on identity, role access, current state and evidence. A SuperUser viewing Deepal’s record is not Deepal. Synthetic demo attendance cannot be submitted. A future, conflicting, stale or incomplete day may not be eligible. Read the form message and ask HR to fix the underlying issue rather than enabling fields directly."
+        },
+        {
+          "kind": "check",
+          "text": "Your submission is visible with its comment and reviewer. Attendance is still not payroll processed. If it is returned, read the supervisor’s reason, resolve the issue and resubmit through the permitted flow."
+        }
+      ]
+    },
+    {
+      "id": "supervisor-review-and-team-approval",
+      "title": "Supervisor review and team approval",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Assigned supervisor or approved delegate",
+          "result": "Approve credible attendance and return disputed days efficiently."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Reviews under your own account and reviewer role.",
+            "Select the date range, optional employee/document search and department. Choose Search / refresh.",
+            "Select a submitted employee-day. Read its punches, current revision, comments and review history.",
+            "Enter a meaningful review comment. Choose Approve if supported by evidence, or Return for correction when the employee/HR must clarify the record.",
+            "Refresh and confirm the status and audit event. Only the assigned supervisor or valid approved delegate may decide."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Approve a team in one operation",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Limit the date, search and department scope to the team you intend to review. The inbox search is bounded to accessible records.",
+            "Review exception reports and representative records. Enter the required review comment.",
+            "Choose Approve all eligible in date/search/department scope.",
+            "Read eligible and skipped counts and skip reasons in the confirmation. The operation covers eligible submitted records across pages in this scope.",
+            "Confirm only when the scope and evidence are correct. Each employee-day receives its own decision and audit record.",
+            "Review skipped items individually. If a source changes during confirmation, refresh and review the new plan; a conflicting record can cancel the operation."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "paragraph",
+          "text": "Bulk approval excludes ineligible records such as synthetic data, stale or conflicting evidence, self-approval and records outside the reviewer’s authority. It does not turn incomplete days into valid attendance."
+        },
+        {
+          "kind": "check",
+          "text": "Approved counts match the intended team scope, skipped records have a follow-up owner, and native documents remain in their appropriate unprocessed state. This action does not calculate absence or payroll."
+        }
+      ]
+    },
+    {
+      "id": "attendance-correction-requests",
+      "title": "Attendance correction requests",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Employee, authorized assisted HR user and assigned supervisor",
+          "result": "Correct missing or incorrect attendance with a full proposal and review history."
+        },
+        {
+          "kind": "heading",
+          "text": "Create and submit",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Corrections and select the eligible missing or incorrect employee-day.",
+            "Choose Load original punches and inspect the current source.",
+            "Enter the **complete corrected punch list**, one full yyyy-MM-dd HH:mm:ss timestamp per line, in chronological order. Include correct existing punches as well as the proposed change.",
+            "Enter the reason and evidence reference. Choose Save draft.",
+            "Attach supporting evidence where enabled. Verify it is associated with the selected request.",
+            "Choose Submit to supervisor. Refresh and confirm the submitted status and reviewer."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Supervisor decision",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "The reviewer selects the request in Your requests and supervisor inbox, compares original and proposed punches, checks evidence and records a decision comment. Use Approve proposal, Return for correction or Reject request. Approval accepts the proposal; the controlled application step still determines whether native attendance can be updated."
+        },
+        {
+          "kind": "heading",
+          "text": "Employee follow-up",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "For a returned request, update the proposal and reason, then submit again. A draft or returned request can be cancelled with a reason; a submitted request can be withdrawn when the action is permitted. Do not create a duplicate active correction just because an existing request is waiting for approval."
+        },
+        {
+          "kind": "heading",
+          "text": "Apply an approved correction",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "An authorized HR operator uses the configured approved-correction application process for the selected request. The bridge rechecks the source revision, access, current attendance and period/payroll state. It can create or reconcile eligible unapproved native Draft attendance, preserving original punches and recording replacement/removal history. It refuses stale, already applied, approved/processed or payroll-linked changes that require a different path."
+        },
+        {
+          "kind": "check",
+          "text": "The request is approved and applied through the supported process, the native draft contains the reviewed corrected punch list, and renewed attendance review is completed where required. The original evidence and correction events remain traceable."
+        }
+      ]
+    },
+    {
+      "id": "evidence-and-assisted-employee-requests",
+      "title": "Evidence and assisted employee requests",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Employee, HR and reviewer",
+          "result": "Use supporting evidence without losing identity, access or audit controls."
+        },
+        {
+          "kind": "heading",
+          "text": "Attach and retrieve evidence",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "The correction form accepts PDF, PNG or JPEG evidence, up to five files of 5 MB each. The employee or authorized assisted submitter can add evidence while the request is Draft or Returned. Supervisors can access permitted evidence after submission. Upload and download are subject to the configured malware-scanning and access checks."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Select the correction request and choose Attach evidence.",
+            "Choose a permitted file and wait for the result. A file that cannot pass the required scanning controls is not ready for normal use.",
+            "Select the stored evidence and use Download selected evidence when authorized.",
+            "If older evidence requires review, ask the authorized administrator/HR operator to run the evidence rescan process and inspect the evidence security report. Do not bypass scanning by copying files into database storage."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Employees without ERP logins",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Authorized assisted HR users may create requests for eligible employees without their own account. Select the employee, select the required supervisor when there is no linked user, and record the identity verification method/reference. Enter the employee’s full proposed times and explanation. The action is attributed to the HR operator and remains subject to independent routing and review."
+        },
+        {
+          "kind": "heading",
+          "text": "Contact and retention",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use the assisted contact controls or Assisted Attendance Contacts form to append a manual contact outcome with a non-sensitive case/log reference. Record an approved identity-check reference for employee responses where required. Do not store passwords, identity document numbers or private contact details in free-text reasons."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Evidence-retention proposals are created and independently reviewed in Attendance Assignment Review. They require a sourced duration and applicability dates. Reviewing a retention proposal records the policy; it does not itself delete or automatically expire files."
+        },
+        {
+          "kind": "check",
+          "text": "Evidence belongs to the correct request, is accessible only to authorized participants, and has a clear scan and audit status. Contact outcomes record the interaction; they do not change punches or approve a request."
+        }
+      ]
+    },
+    {
+      "id": "leave-holidays-and-attendance",
+      "title": "Leave holidays and attendance",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Employee, attendance operator and HR",
+          "result": "Avoid false missing attendance or absence when leave and calendars apply."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The expected day combines the roster with the assigned calendar and approved leave. Leave requests, leave taken and attendance records remain separate evidence. The attendance process must recognize the correct leave dates and fractions before deciding what punches are expected."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Situation",
+            "Correct handling"
+          ],
+          "rows": [
+            [
+              "Approved full-day leave",
+              "Review the leave coverage; do not fabricate work punches. A conflicting punch needs investigation."
+            ],
+            [
+              "Approved half-day or partial leave",
+              "Review the approved leave interval and remaining expected work intervals. Provide real punches for the expected work, not a blanket four-punch assumption."
+            ],
+            [
+              "Leave cancelled or changed",
+              "Refresh/recalculate the affected employee-day. A previous leave classification may no longer be valid."
+            ],
+            [
+              "Roster rest day",
+              "No punches do not mean absence. Work on a rest day requires the applicable reviewed treatment."
+            ],
+            [
+              "Holiday with no attendance",
+              "Check the roster/calendar classification and holiday source."
+            ],
+            [
+              "Holiday with recorded work",
+              "Valid recorded punches may be retained against a resolved shift when there is no conflicting approved leave. Pay treatment requires separate review."
+            ],
+            [
+              "Missing punches on expected workday",
+              "Investigate source, leave and calendar first. Use evidence or a correction request; do not assume absence."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Practical check",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open the employee-day detail and My Calendar or the relevant leave request.",
+            "Confirm the actual approved status, dates and fractions of leave.",
+            "Confirm the holiday belongs to the assigned calendar and its classification/source is reviewed.",
+            "Run recalculation after a relevant source change and read the new expected status.",
+            "If payroll treatment is required, use the applicable reviewed payable or absence workflow."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "check",
+          "text": "The day’s expectation agrees with the current leave and calendar sources. No automatic leave deduction or salary deduction is inferred from an unresolved attendance gap."
+        }
+      ]
+    },
+    {
+      "id": "overtime-requests-and-payable-review",
+      "title": "Overtime requests and payable review",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Employee, supervisor and HR",
+          "result": "Separate recorded work, authorization and payable overtime."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Overtime Review as the employee and select an eligible supervisor-approved employee-day.",
+            "Enter the requested minutes and the reason, then choose Create draft.",
+            "Select the draft in the queue, enter the required comment and choose Submit.",
+            "The assigned supervisor reviews the request and records Supervisor-authorized minutes within the requested range. Choose Authorize, Return or Reject as appropriate.",
+            "An authorized HR reviewer examines the approved rule/source and records HR payable minutes using Record HR payable decision.",
+            "Check the final request and payable decision before preparing the payroll handoff."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Three quantities to distinguish",
+          "level": 2
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Quantity",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Recorded work minutes",
+              "Derived from supported reviewed attendance evidence; not automatically overtime."
+            ],
+            [
+              "Supervisor-authorized minutes",
+              "The amount the supervisor accepts from the request."
+            ],
+            [
+              "HR payable minutes",
+              "The amount reviewed as payable under the applicable rule. Zero can be an explicit reviewed decision that none is payable."
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "The request is not an overtime-rate calculator. The company must review the applicable legal regime, calendar context and payroll rules. The current overtime flow has specific supported attendance-source requirements; an unsupported schedule or punch pattern must be reviewed rather than forced into a request."
+        },
+        {
+          "kind": "heading",
+          "text": "Changes and cancellation",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use the available Cancel request, Return or Reject actions with reasons. Resolve outstanding overtime requests before period close. If attendance changes, recheck the overtime source and approval rather than retaining a decision based on obsolete punches."
+        },
+        {
+          "kind": "check",
+          "text": "The employee request, supervisor authorization and HR payable decision are all recorded. The payable minutes and source reference are ready for the separate handoff stage; payroll has not yet run."
+        }
+      ]
+    },
+    {
+      "id": "regular-payable-attendance-decisions",
+      "title": "Regular payable attendance decisions",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR maker and independent HR reviewer",
+          "result": "Approve regular payable quantities without silently converting every punch into pay."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Regular Payable Decisions.",
+            "Select an open attendance period and an eligible supervisor-approved employee-day.",
+            "Enter the positive Payable quantity in the unit configured on the reviewed attendance policy.",
+            "Record the required overtime exclusion/review reference so the same time is not paid twice.",
+            "Enter the HR decision reason and choose Save payable draft.",
+            "A different authorized HR user selects the draft, enters a review comment and chooses Approve selected draft.",
+            "Use Void selected draft with a reason for a draft that should not proceed. Review Decision audit history and refresh."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Unit example",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "If the approved unit is HOUR, enter the reviewed hours; if it is DAY, enter the reviewed days. Do not enter 480 into an hours field merely because the employee worked 480 minutes. The later handoff preserves the approved regular unit; it does not reinterpret the quantity using the overtime conversion selector."
+        },
+        {
+          "kind": "heading",
+          "text": "Policy and evidence",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "The payable quantity must be supported by the current attendance day, reviewed policy and company rules. Timing exceptions, approved leave and non-working days may require separate decisions. An eight-hour example is not a general instruction to pay every complete punch set as eight hours."
+        },
+        {
+          "kind": "check",
+          "text": "The quantity, unit, source day, overtime review reference, independent approver and audit event are correct. There are no pending payable drafts that would block closing or create uncertainty in handoff."
+        }
+      ]
+    },
+    {
+      "id": "communications-reminders-and-shared-incidents",
+      "title": "Communications reminders and shared incidents",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR operations and administrators",
+          "result": "Track employee follow-up without changing attendance evidence."
+        },
+        {
+          "kind": "heading",
+          "text": "Employee exception notices",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Where explicitly enabled, the exception-notice process creates notices for eligible attendance exceptions in a bounded organization/date range. Use its maximum-row parameter to control each run. The notification outbox and reports show delivery/retry state. Enable communication only after the route, recipients and company practice are reviewed."
+        },
+        {
+          "kind": "heading",
+          "text": "Dispatch reminders and escalation",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Authorized processes dispatch queued notices and generate due reminders/escalations using configured workflow rules. In-app notices and optional email are different channels. Email is disabled by default and requires native SMTP configuration plus an eligible active recipient email. SMTP acceptance is not proof of delivery or reading. Review failed and exhausted attempts in the outbox instead of repeatedly creating new requests."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Marking a native notice processed records an application acknowledgement; it is not proof that the employee agrees with the attendance. For staff without an ERP account, use the approved manual assisted-contact workflow and record the outcome with a case reference."
+        },
+        {
+          "kind": "heading",
+          "text": "Device outage affecting several employees",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Device Incidents and create a draft with organization, device/terminal, start and end timestamps, incident name, evidence reference and reason.",
+            "Load attention days and link the specific affected employee-days. Do not attach unrelated days simply because they fall in the same week.",
+            "Submit for independent HR review using the available action.",
+            "After the investigation, close the reviewed incident or cancel it with the appropriate reason.",
+            "Resolve the affected employee-days through evidence/correction and review workflows separately."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "check",
+          "text": "There is a traceable notice or incident record and an owner for follow-up. An outage record does not create punches, confirm absence, resolve every exception, approve attendance or change payroll."
+        }
+      ]
+    },
+    {
+      "id": "attendance-period-close-and-reopen",
+      "title": "Attendance period close and reopen",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Authorized HR period owner",
+          "result": "Lock a fully reviewed population and preserve a reproducible close snapshot."
+        },
+        {
+          "kind": "heading",
+          "text": "Create and assess a period",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Period Control. Select organization, give the period a clear name, and enter its From/To dates and cutoff where used.",
+            "Choose Create period, then select it and choose Check readiness.",
+            "Generate expected attendance for the full active population and range, using multiple bounded runs if necessary.",
+            "Resolve setup gaps, inaccessible employee-days, pending recalculations, unreviewed days, open corrections, open overtime and unresolved period exceptions.",
+            "Finish independent regular payable decisions where applicable and check payroll handoff reconciliation.",
+            "At or after the cutoff, run Check readiness again. Enter a close reason and choose Close period only when the blockers are clear."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Period exceptions and absence outcomes",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use Attendance period exceptions to record the affected employee-day, exception type and description. Resolve with treatment or authorize an override only with the required evidence and HR authority. An Absence Review issue requires the reviewed policy, eligible current missing-day evidence, a case reference, rationale and an explicit Confirmed absence or Not an absence outcome. It does not automatically create a salary deduction."
+        },
+        {
+          "kind": "heading",
+          "text": "Reopen safely",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "A closed period can be reopened with a reason only when the service’s reconciliation checks permit it. Staged unprocessed Draft incidences must first be voided through the supported handoff action, with linked reversal records and a reconciled state. Completed/processed payroll cannot be undone by reopening attendance; use the post-payroll correction flow."
+        },
+        {
+          "kind": "check",
+          "text": "The period shows Closed with its close event and source snapshot. Retain the readiness and reconciliation reports. After any permitted reopen, recalculate changed days, repeat required reviews and close again."
+        }
+      ]
+    },
+    {
+      "id": "payroll-handoff-and-independent-checking",
+      "title": "Payroll handoff and independent checking",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR handoff operator and payroll checker",
+          "result": "Transfer approved quantities exactly through the controlled incidence workflow."
+        },
+        {
+          "kind": "heading",
+          "text": "Prepare the mapping",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Before handoff, payroll must have an appropriate open payroll period, an active manual quantity-input concept belonging to that payroll, and a reviewed concept/unit/rule mapping. Do not select an arbitrary concept merely because it is available in a dropdown."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Open Attendance Payroll Handoff and select the closed attendance period.",
+            "Select an open HR payroll period that covers the complete attendance period.",
+            "Choose the reviewed payroll concept and enter the mapping/source reference.",
+            "For overtime, explicitly choose Minutes or Hours and the supported precision/rounding settings. For regular attendance, preserve the approved DAY/HOUR/MINUTE unit.",
+            "Refresh preview and inspect candidates, units, exclusions and existing handoffs.",
+            "Choose Stage approved overtime as Draft incidences or Stage approved regular attendance as Draft incidences, as appropriate. Review confirmation before proceeding.",
+            "Refresh reconciliation and note the resulting incidence document numbers and source links."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Independent payroll checker",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "A different authorized HR/payroll checker opens Review Attendance Payroll Incidences.",
+            "Select the staged incidence and verify employee, period, concept, quantity/unit, source attendance and mapping reference.",
+            "Enter the required review reason and choose Approve and complete selected incidence.",
+            "Confirm the linked native Payroll Incidence is completed through the supported workflow.",
+            "Continue with the organization’s normal payroll calculation, review and finalization outside this attendance guide."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Correcting an unprocessed handoff",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use Void selected Draft incidence only for an eligible unprocessed draft. The action records a linked reversal rather than deleting its history. Reconcile the period before attempting reopen or a replacement handoff. Duplicate protection relies on source/version links; never copy an incidence manually to retry a failed transfer."
+        },
+        {
+          "kind": "check",
+          "text": "Every intended approved quantity has one reconciled handoff, the correct unit/concept and the required independent incidence approval. Payroll run completion must be verified separately."
+        }
+      ]
+    },
+    {
+      "id": "corrections-after-payroll-handoff",
+      "title": "Corrections after payroll handoff",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Authorized HR/payroll maker and independent checker",
+          "result": "Record a later adjustment while preserving completed originals."
+        },
+        {
+          "kind": "list",
+          "items": [
+            "First determine whether the original incidence is still an unprocessed Draft or is already completed/processed. Use the draft-void flow only when eligible.",
+            "For a completed original, open Correct Attendance After Payroll.",
+            "Select the completed source incidence and a later open period of the same payroll.",
+            "Enter the correction date and the **approved corrected total quantity**, not the difference.",
+            "Enter the source reference and reason explaining the reviewed correction.",
+            "Choose Create compensating Draft. Inspect the calculated compensation against the original and any prior corrections.",
+            "Have a different authorized checker review and complete the resulting draft through the incidence review workflow.",
+            "Run Post-payroll correction reconciliation and the native incidence trace, then verify the normal payroll outcome separately."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Example of total versus adjustment",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "If the original approved total was 8 hours and the newly approved correct total is 7 hours, enter 7 as the corrected total. The application calculates the required compensating quantity from the source and adjustment history. Do not enter −1 as if the field were a difference field."
+        },
+        {
+          "kind": "paragraph",
+          "text": "A later correction does not erase original punches, decisions or a completed payroll input. It produces a linked adjustment with its own source, period, review and audit trail. If the target period, concept or original state is not eligible, resolve the payroll configuration or case rather than editing historical rows directly."
+        },
+        {
+          "kind": "check",
+          "text": "The original remains unchanged, the compensation is linked and independently reviewed, and reconciliation shows the intended corrected total without a duplicate adjustment."
+        }
+      ]
+    },
+    {
+      "id": "reports-and-operational-monitoring",
+      "title": "Reports and operational monitoring",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR operations, supervisors and payroll",
+          "result": "Locate unfinished work and prove each stage is reconciled."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Open Attendance Operations Reports, select Organization, report and From/To dates, then choose Refresh report. Export CSV when authorized. Use a focused date range; the service bounds date ranges and exports, so narrow the range if a result exceeds the limit. CSV exports contain metadata, not evidence-file contents."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Report",
+            "Use it to answer"
+          ],
+          "rows": [
+            [
+              "Roster & policy assignment coverage",
+              "Which employees lack a unique reviewed schedule or policy?"
+            ],
+            [
+              "Five-day roster HR review coverage",
+              "Are five-day review references valid for the applicable dates?"
+            ],
+            [
+              "Employee supervisor coverage",
+              "Who has no usable approval route?"
+            ],
+            [
+              "Employment legal applicability coverage",
+              "Is the employee/group legal assignment reviewed and effective?"
+            ],
+            [
+              "Native attendance → incidence trace",
+              "How does a workday link to native attendance and payroll input?"
+            ],
+            [
+              "Exceptions / missing attendance",
+              "Which days still need investigation?"
+            ],
+            [
+              "Reviewed late / early flags",
+              "Which timing flags result from reviewed configured rules?"
+            ],
+            [
+              "Correction aging / state",
+              "Which correction requests are open or overdue?"
+            ],
+            [
+              "Correction evidence register",
+              "What evidence metadata is linked to each request?"
+            ],
+            [
+              "Evidence security readiness",
+              "Are required scanner and evidence controls ready?"
+            ],
+            [
+              "Overtime decisions",
+              "What was requested, authorized and reviewed payable?"
+            ],
+            [
+              "Period close readiness",
+              "Which periods have unresolved blockers?"
+            ],
+            [
+              "Payroll handoff reconciliation",
+              "What has been staged, completed, voided or left unreconciled?"
+            ],
+            [
+              "Post-payroll correction reconciliation",
+              "Do adjustments reconcile to the approved corrected totals?"
+            ],
+            [
+              "Notification delivery / retries",
+              "Which notices were sent, failed, retried or acknowledged?"
+            ],
+            [
+              "Shared device incident impact",
+              "Which employee-days are linked to a recorded outage?"
+            ],
+            [
+              "Attendance automation schedule readiness",
+              "Are the reported scheduled jobs configured and eligible?"
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Attendance Overview",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use Attendance Overview for a summary of the latest saved employee-day snapshots and operational queues. Refresh the relevant sources and expectations before treating the numbers as current. Saved counts are not live biometric presence and do not independently establish absence or payroll completion."
+        },
+        {
+          "kind": "check",
+          "text": "At day-end, reconcile import results with exceptions and pending reviews. At period-end, reconcile expected days, approval states, payable decisions and payroll source links."
+        }
+      ]
+    },
+    {
+      "id": "troubleshooting-common-messages",
+      "title": "Troubleshooting common messages",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "All users and support",
+          "result": "Resolve the cause without bypassing validation or altering audit history."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Symptom or message",
+            "What to check and do"
+          ],
+          "rows": [
+            [
+              "Active user/role membership required",
+              "Sign in using an active membership for the selected role. Administrator checks user, role and membership activation."
+            ],
+            [
+              "Role has no write access to organization",
+              "Check the request/import organization and the HR employee/business partner organizations. Grant only intended access; do not change ownership just to suppress the error."
+            ],
+            [
+              "Unmatched employee code",
+              "Check HR employee Code, active status, employment dates and selected organization. Use a verified batch mapping for a file alias."
+            ],
+            [
+              "Exactly one assignment required",
+              "Resolve missing or overlapping effective roster/policy coverage. Confirm independent approval and the work date."
+            ],
+            [
+              "Punch outside selected date range",
+              "Check the actual source date, selected range and overnight roster boundary. Do not change a genuine timestamp to fit an incorrect range."
+            ],
+            [
+              "Expected distinct punches but found fewer",
+              "Count distinct timestamps. Repeating the same time does not create another valid punch. Obtain the missing evidence or an approved correction."
+            ],
+            [
+              "Correction/mapping reason required",
+              "Enter a meaningful nonblank reason of 1–1000 characters in the action’s own reason field."
+            ],
+            [
+              "Review import disabled",
+              "Confirm a current preview and at least one READY employee-day; resolve setup and punch issues and refresh."
+            ],
+            [
+              "Review action unavailable",
+              "Check own identity, reviewer assignment/delegation, state, future date, stale source, synthetic flag and access."
+            ],
+            [
+              "Evidence scanner unavailable",
+              "Administrator verifies the trusted scanner connection and readiness. Keep the request pending; do not bypass evidence controls."
+            ],
+            [
+              "Period cannot close",
+              "Read each readiness blocker, complete the missing work and recalculate before retrying."
+            ],
+            [
+              "Reopen blocked by payroll handoff",
+              "Reconcile eligible Draft voids and linked reversals. Completed payroll requires the later correction workflow."
+            ],
+            [
+              "Menu missing or fields missing after upgrade",
+              "Check package version, active dictionary entries and role access; reset cache/re-login and reopen the window."
+            ],
+            [
+              "Blank standard window with disabled fields",
+              "Check whether a record is selected or the view is 0/0. Use New only for permitted setup entry; read-only audit windows are intentional."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "worked-example-for-deepal-and-nimal",
+      "title": "Worked example for Deepal and Nimal",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Training facilitator",
+          "result": "Demonstrate one complete attendance cycle using explicitly synthetic or approved pilot data."
+        },
+        {
+          "kind": "paragraph",
+          "text": "This is a training scenario, not confirmation of current employee setup or actual attendance. Use Deepal as the employee and Nimal as the assigned supervisor only after verifying their real links and access. The office example is Friday 6 November 2026, 08:30–17:30 with lunch 12:30–13:30."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Step",
+            "Action",
+            "Expected result"
+          ],
+          "rows": [
+            [
+              "1",
+              "Verify code, employment, organization, supervisor, reviewed roster/policy and assignments",
+              "Coverage has no missing or competing setup."
+            ],
+            [
+              "2",
+              "Upload the four-punch CSV with the correct work organization/date range",
+              "Preview shows the day as ready if all current setup/evidence checks pass."
+            ],
+            [
+              "3",
+              "Review import and confirm",
+              "One native draft day with four distinct punches; no payroll output."
+            ],
+            [
+              "4",
+              "Repeat the same file in a controlled duplicate test",
+              "No second copy of the same saved punches."
+            ],
+            [
+              "5",
+              "Employee checks Attendance Reviews and submits with a reason",
+              "A genuine eligible day is routed to the assigned supervisor."
+            ],
+            [
+              "6",
+              "Supervisor checks evidence and approves",
+              "Review is Approved; native document/payroll completion remains separate."
+            ],
+            [
+              "7",
+              "HR prepares and independently reviews payable decisions as applicable",
+              "Approved quantity/unit and evidence are recorded."
+            ],
+            [
+              "8",
+              "HR closes a fully reviewed period and stages handoff",
+              "Controlled closed snapshot and linked Draft incidences."
+            ],
+            [
+              "9",
+              "Independent checker completes eligible incidences",
+              "Inputs ready for the normal payroll workflow; reconciliation is traceable."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Keep synthetic testing separate",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "When Synthetic demo data is selected, supervisor submission is intentionally prevented. Use that mode to demonstrate upload, validation and duplicate protection. Demonstrate actual review/payroll progression only with authorized pilot evidence in an appropriate test workflow; do not relabel invented punches as genuine to pass the submission gate."
+        },
+        {
+          "kind": "heading",
+          "text": "Add exception variants",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Remove a lunch return punch: expect a punch issue, then correct it only with evidence.",
+            "Use an unknown employee code: expect unmatched status, then demonstrate a verified batch mapping.",
+            "Include no punches for an expected worker: generate expected attendance and investigate the missing day.",
+            "Add approved partial leave: verify the remaining work intervals.",
+            "Change a reviewed source after preview: refresh and observe required revalidation/review."
+          ],
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "daily-weekly-and-period-end-checklists",
+      "title": "Daily weekly and period end checklists",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Attendance operations owner",
+          "result": "Make work completion visible and prevent abandoned exceptions."
+        },
+        {
+          "kind": "heading",
+          "text": "Daily attendance operator",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Confirm the organization, date range and complete source file.",
+            "Refresh expected attendance, including no-punch employees.",
+            "Preview and import ready groups; preserve unresolved exceptions.",
+            "Export or categorize remaining issues and assign a follow-up owner.",
+            "Track correction requests and evidence, then apply approved corrections where eligible.",
+            "Check pending recalculations, submitted reviews and failed notifications.",
+            "Record the batch/import result and hand over outstanding cases."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "heading",
+          "text": "Supervisor",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Review the intended team/date scope and the employee explanations.",
+            "Approve only evidence-supported submitted days; return disputed records.",
+            "Review skipped items after bulk approval.",
+            "Decide overtime authorization separately and clear aging requests.",
+            "Arrange an effective approved delegation before an absence."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "heading",
+          "text": "Period end HR and payroll",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Generate and review the full active employee population for the period.",
+            "Resolve setup, calendar, legal coverage and five-day/night review gaps.",
+            "Clear pending recalculations and outstanding corrections/overtime.",
+            "Record and review required absence cases and payable quantities.",
+            "Run period readiness and retain the reviewed close result.",
+            "Close, stage the correct handoff and independently check incidences.",
+            "Reconcile sources, units, voids and later adjustments.",
+            "Verify the normal payroll run outcome independently from attendance status."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "check",
+          "text": "Each remaining exception has an owner and a reason. “Import completed” is documented separately from “all attendance reviewed” and “payroll completed”."
+        }
+      ]
+    },
+    {
+      "id": "administrator-configuration-and-automation",
+      "title": "Administrator configuration and automation",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "System administrator with HR authorization",
+          "result": "Configure explicit service gates without turning on unattended processing accidentally."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use System Configurator with the correct tenant and organization scope. These keys are a technical reference for administrators; ordinary users should use the forms. Review company decisions and access before enabling a switch. A configured process is not automatically a scheduled job."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Configuration area",
+            "Relevant keys or requirements"
+          ],
+          "rows": [
+            [
+              "Review and HR authorization",
+              "SHRP_ATTENDANCE_REVIEW_ENABLED; SHRP_ATTENDANCE_REVIEW_HR_ROLES"
+            ],
+            [
+              "Payroll checker authorization",
+              "SHRP_ATTENDANCE_PAYROLL_REVIEW_ROLES"
+            ],
+            [
+              "Attendance dates",
+              "SHRP_ATTENDANCE_TIME_ZONE; explicit org/tenant IANA timezone for date defaults"
+            ],
+            [
+              "CSV capacity",
+              "SHRP_ATTENDANCE_IMPORT_LIMIT; SHRP_ATTENDANCE_IMPORT_TIMEOUT"
+            ],
+            [
+              "Assisted corrections/contact",
+              "SHRP_ATTENDANCE_ASSISTED_CORRECTION_ROLES; SHRP_ATTENDANCE_ASSISTED_CONTACT_POLICY_REF"
+            ],
+            [
+              "Evidence scanning",
+              "SHRP_ATTENDANCE_EVIDENCE_SCANNER_HOST; SHRP_ATTENDANCE_EVIDENCE_SCANNER_PORT; trusted ClamAV INSTREAM endpoint"
+            ],
+            [
+              "Optional email",
+              "SHRP_ATTENDANCE_EMAIL_ENABLED; configured native SMTP and eligible recipient email"
+            ],
+            [
+              "Exception notices",
+              "SHRP_ATTENDANCE_EXCEPTION_NOTICE_ENABLED; separate schedule switch, organization, timezone, lookback and maximum-row settings"
+            ],
+            [
+              "Expected generation",
+              "SHRP_ATTENDANCE_AUTO_GENERATION_ENABLED; organization, document type, timezone and lookback settings"
+            ],
+            [
+              "Recalculation scheduling",
+              "SHRP_ATTENDANCE_AUTO_RECALC_ENABLED; organization, document type and maximum employee-day settings"
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Enabling a scheduled flow",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Validate the equivalent manual process on a bounded reviewed scope.",
+            "Choose an active service user/role with the intended HR allowlist and organization/data access.",
+            "Configure the explicit settings and limits. Keep disabled or blank values until reviewed.",
+            "Create and activate the native scheduler job with the correct process and parameters; verify its identity and timezone.",
+            "Run a controlled test, inspect its logs/outputs and the automation readiness report, then monitor subsequent runs.",
+            "If it fails, resolve the source or access issue and retry through the supported flow. Do not enable broad privileges or create replacement punches to hide the failure."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "check",
+          "text": "Generation and recalculation create/refine review data only. Communications create/send notices under their settings. None of these scheduled flows grants authority to approve attendance or finalize payroll automatically."
+        }
+      ]
+    },
+    {
+      "id": "administrative-process-run-instructions",
+      "title": "Administrative process run instructions",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "Authorized HR operator or administrator",
+          "result": "Run controlled background actions with explicit parameters and verify their outputs."
+        },
+        {
+          "kind": "heading",
+          "text": "Apply Approved Attendance Correction",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Select the approved Attendance Correction Request and the Attendance document type.",
+            "Check that the request still matches the current source punches and is not already applied.",
+            "Run Apply Approved Attendance Correction and read the result.",
+            "Inspect the native draft, retained original evidence and correction audit. Complete any renewed attendance review."
+          ],
+          "ordered": true
+        },
+        {
+          "kind": "heading",
+          "text": "Evidence rescan",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Select Organization. Supply both Date From and Date To, or leave both blank according to the approved scope. Max Files is limited to 200 per run. Retry Non Clean controls whether previously non-clean evidence is reconsidered. Run only when the trusted scanner is ready, then check evidence status and the security report. Rescanning is not deletion or retention expiry."
+        },
+        {
+          "kind": "heading",
+          "text": "Queue Employee Attendance Exception Notices",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Select Organization, Date From, Date To and Max Rows. Use a range of 1–31 days and a maximum of 1–1000 rows. The tenant notice switch and HR role authorization must be enabled. Review the resulting outbox entries, then run the dispatcher through the configured operating procedure."
+        },
+        {
+          "kind": "heading",
+          "text": "Queue Attendance Reminders",
+          "level": 2
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Parameter",
+            "How to choose it"
+          ],
+          "rows": [
+            [
+              "Days Pending",
+              "Company-selected age before reminder; 1–365 days."
+            ],
+            [
+              "Repeat Interval Days",
+              "Reviewed interval between reminders; 1–365 days."
+            ],
+            [
+              "Max Reminders Per Request",
+              "Limit of 1–5 reminders per submission."
+            ],
+            [
+              "Max Rows",
+              "Bounded run size of 1–250."
+            ],
+            [
+              "Escalation After Days and User",
+              "Both zero means disabled. Otherwise provide the reviewed age and eligible recipient together. Escalation notifies; it does not reassign approval."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Dispatch Attendance Notifications",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "The dispatcher has no process parameters. Run it as an authorized tenant HR role after verifying the communication setup. Inspect the Notification Outbox and delivery/retry report afterward. A failed item can remain eligible for controlled retry; do not assume every queued item was delivered because the process ran."
+        },
+        {
+          "kind": "check",
+          "text": "Inspect the affected records as well as the process result. See the preceding chapter for parameter-free scheduled processes."
+        }
+      ]
+    },
+    {
+      "id": "screen-and-process-directory",
+      "title": "Screen and process directory",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "All users and support",
+          "result": "Locate operational forms and underlying standard windows."
+        },
+        {
+          "kind": "heading",
+          "text": "Custom forms and primary processes",
+          "level": 2
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Name",
+            "Purpose"
+          ],
+          "rows": [
+            [
+              "Attendance Import & Review",
+              "CSV upload, preview, corrections, exception work and bulk draft import."
+            ],
+            [
+              "Attendance Reviews",
+              "Employee submission and assigned supervisor/team decisions."
+            ],
+            [
+              "Attendance Assignment Review",
+              "Independent configuration, assignment, delegation and fallback review."
+            ],
+            [
+              "Attendance Corrections",
+              "Employee/assisted full-punch proposals and supervisor decisions."
+            ],
+            [
+              "Attendance Overtime Review",
+              "Requested, authorized and HR-payable overtime decisions."
+            ],
+            [
+              "Attendance Regular Payable Decisions",
+              "Regular unit/quantity proposals and independent HR approval."
+            ],
+            [
+              "Attendance Period Control",
+              "Readiness, exceptions, close and controlled reopen."
+            ],
+            [
+              "Attendance Payroll Handoff",
+              "Stage and reconcile reviewed quantities as native incidences."
+            ],
+            [
+              "Review Attendance Payroll Incidences",
+              "Independent completion of eligible linked incidence drafts."
+            ],
+            [
+              "Correct Attendance After Payroll",
+              "Compensating draft in a later open payroll period."
+            ],
+            [
+              "Attendance Operations Reports",
+              "Coverage, exception, audit and reconciliation reports."
+            ],
+            [
+              "Attendance Overview",
+              "Latest saved operational summary."
+            ],
+            [
+              "Attendance Device Incidents",
+              "Shared outage evidence and affected employee-day links."
+            ],
+            [
+              "Assisted Attendance Contacts",
+              "Manual contact outcome records under reviewed policy."
+            ],
+            [
+              "Recalculate Attendance Queue",
+              "Refresh a changed employee/date from current sources."
+            ],
+            [
+              "Generate Expected Attendance",
+              "Create source-free expectations for an organization/date range."
+            ],
+            [
+              "My Calendar",
+              "Employee view of personal leave, holidays and attendance."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Underlying standard dictionary windows",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "The current layout release covers the following standard windows. Access is role-dependent. Event, queue, decision and handoff records are inspection/audit views where controlled actions are provided by custom forms."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Standard window",
+            "Use"
+          ],
+          "rows": [
+            [
+              "Attendance Assignment Events",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Corrections",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Delegations",
+              "Effective supervisor delegation proposals"
+            ],
+            [
+              "Attendance Device Incidents",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Holiday Classifications",
+              "Sourced holiday classification proposals"
+            ],
+            [
+              "Attendance Notification Outbox",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Payroll Handoff",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Period Events",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Periods",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Policy",
+              "Versioned attendance rule configuration"
+            ],
+            [
+              "Attendance Recalculation Queue",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Attendance Record",
+              "Native batch and punch inspection"
+            ],
+            [
+              "Attendance Roster",
+              "Configuration with Cycle Lines and Break Intervals child tabs"
+            ],
+            [
+              "Employment Legal Regime Assignments",
+              "Reviewed legal applicability"
+            ],
+            [
+              "Expected Employee-Days",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Human Resource Calendar",
+              "Payroll calendar with Year and Period children"
+            ],
+            [
+              "Import Attendance Record",
+              "Underlying staging inspection; use the custom importer for operations"
+            ],
+            [
+              "Overtime Decision Events",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Overtime Requests",
+              "Inspect workflow records and audit history."
+            ],
+            [
+              "Payroll Incidence",
+              "Native payroll input inspection and authorized document workflow"
+            ],
+            [
+              "Policy Assignments",
+              "Effective attendance policy coverage"
+            ],
+            [
+              "Roster Assignments",
+              "Effective schedule coverage"
+            ],
+            [
+              "Shift Group",
+              "Supporting schedule groups"
+            ],
+            [
+              "Work Group",
+              "Workforce grouping"
+            ],
+            [
+              "Work Shift",
+              "Shift master data"
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Additional configured processes handle approved correction application, evidence rescan, notification dispatch, reminders and scheduled expected generation/recalculation/notices. Administrators should identify these by their registered process/class and granted role access, then verify parameters before scheduling."
+        }
+      ]
+    },
+    {
+      "id": "field-reference-for-standard-setup-windows",
+      "title": "Field reference for standard setup windows",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR setup users",
+          "result": "Understand the main editable fields and avoid filling audit/system fields manually."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Standard windows use native iDempiere controls, grouped fields and required markers. Read-only audit fields such as reviewer, reviewed-at, source hash and status are set by the controlled workflow. Hidden system keys and tenant references should not be added or edited to bypass workflow rules."
+        },
+        {
+          "kind": "heading",
+          "text": "Attendance Roster",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Tenant and Organization:** Organization. **General:** Name, Version, Active, Description. **Schedule:** Schedule Type, Work Group, Work Shift, Working Week (Mon–Sun), Cycle Start Date, Cycle Length Days, Time Zone, Holiday Calendar, Calendar Source Ref. **Breaks:** Scheduled Break, Break Duration (Minutes), Break Starts After (Minutes), Break Treatment State, Break Treatment. **Punch Matching:** Workday Starts At, Max Shift Minutes, Punch Before Minutes, Punch After Minutes. **Five-day Workweek Review:** Five Day Workweek Review State, Five Day Workweek Source Ref, Five Day Workweek Valid From, Five Day Workweek Valid To. **Night-work Review:** Night Work Review State, Night Work Review Source Ref, Night Work Review Valid From, Night Work Review Valid To."
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Cycle Lines**"
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Cycle Day:** Attendance Roster, Day Offset (0 = First Day), Is Work Day, Work Shift, Active."
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Break Intervals**"
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Additional Break:** Attendance Roster, Break Number, Active, Starts After Shift (Minutes), Duration (Minutes)."
+        },
+        {
+          "kind": "heading",
+          "text": "Attendance Policy",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "**Tenant and Organization:** Organization. **General:** Name, Version, Active, Description. **Working Time:** Late Grace State, Late Grace Minutes, Early Grace State, Early Grace Minutes, Rounding State, Rounding Minutes. **Breaks and Payable Units:** Break Treatment State, Break Treatment, Overtime Rule State, Overtime Rule Ref, Payable Unit State, Payable Unit. **Absence Review:** Absence Review State, Absence Review Source Ref, Policy Source Ref."
+        },
+        {
+          "kind": "heading",
+          "text": "Roster Assignments",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "Organization, Name, Active, Assignment Type, Employee, Work Group, Attendance Roster, Valid From, Valid To."
+        },
+        {
+          "kind": "heading",
+          "text": "Policy Assignments",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "Organization, Name, Active, Assignment Type, Employee, Work Group, Attendance Policy, Valid From, Valid To."
+        },
+        {
+          "kind": "heading",
+          "text": "Employment Legal Regime Assignments",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "Organization, Name, Version, Active, Assignment Type, Employee, Work Group, Valid From, Valid To, Regime Code, Regime Name, Applicability, Legal Source Ref, Rationale."
+        },
+        {
+          "kind": "heading",
+          "text": "Attendance Delegations",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "Organization, Name, Active, Supervisor, Delegate, Valid From, Valid To."
+        },
+        {
+          "kind": "heading",
+          "text": "Attendance Holiday Classifications",
+          "level": 3
+        },
+        {
+          "kind": "paragraph",
+          "text": "Organization, Name, Version, Active, Calendar Holiday, Work Group, Holiday Class, Source Ref."
+        },
+        {
+          "kind": "check",
+          "text": "Use the workflow chapters for the meaning and review sequence. A field is not necessarily applicable to every schedule type; retain the reviewed choice rather than filling every field with a guessed value."
+        }
+      ]
+    },
+    {
+      "id": "status-glossary-and-operating-limits",
+      "title": "Status glossary and operating limits",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "All users",
+          "result": "Interpret states and choose manageable processing scopes."
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Term",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Punch",
+              "An actual recorded timestamp; original evidence is preserved."
+            ],
+            [
+              "Employee-day",
+              "An employee and resolved work date, which may include an overnight span."
+            ],
+            [
+              "Expected day",
+              "A saved interpretation of schedule, calendar, leave and attendance sources."
+            ],
+            [
+              "Revision",
+              "A new saved expectation after relevant inputs change."
+            ],
+            [
+              "Draft",
+              "Record is saved but has not completed the applicable submission/approval lifecycle."
+            ],
+            [
+              "Submitted",
+              "Awaiting the assigned reviewer’s decision."
+            ],
+            [
+              "Returned",
+              "Needs correction or explanation before resubmission."
+            ],
+            [
+              "Approved",
+              "Approved at the named stage only; check whether this means attendance, proposal, payable quantity or incidence."
+            ],
+            [
+              "Missing",
+              "Expected attendance evidence is absent; no automatic absence conclusion."
+            ],
+            [
+              "Payable",
+              "Quantity explicitly reviewed for payroll under an applicable rule."
+            ],
+            [
+              "Handoff",
+              "Linked transfer into native payroll incidences."
+            ],
+            [
+              "Reconciled",
+              "Source, output and any void/reversal/adjustment links agree."
+            ],
+            [
+              "Synthetic demo",
+              "Test evidence deliberately blocked from normal supervisor submission."
+            ]
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "Current practical limits",
+          "level": 2
+        },
+        {
+          "kind": "table",
+          "headers": [
+            "Operation",
+            "Current bound"
+          ],
+          "rows": [
+            [
+              "CSV upload",
+              "UTF-8; two columns; maximum 2 MiB."
+            ],
+            [
+              "CSV row capacity",
+              "Configured default 5,000; supported configuration 1–20,000."
+            ],
+            [
+              "Workbench preview population",
+              "Up to 2,000 eligible employees and 10,000 employee-days per preview; reduce organization/date scope if exceeded."
+            ],
+            [
+              "Manual expected generation",
+              "1–31 days per run."
+            ],
+            [
+              "Correction evidence",
+              "PDF, PNG or JPEG; up to five files, 5 MB each."
+            ],
+            [
+              "Most action reasons",
+              "1–1000 characters; use the specific field limit shown."
+            ],
+            [
+              "Operations reports",
+              "Date range up to 366 days; CSV export up to 2,000 rows."
+            ],
+            [
+              "Supervisor search",
+              "Up to 1,000 accessible records per search; narrow the scope as needed."
+            ]
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Limits protect review accuracy and performance. Splitting a file or date range must preserve complete shift evidence, especially overnight shifts. Do not circumvent a validation limit by removing exceptions from the audit trail."
+        }
+      ]
+    },
+    {
+      "id": "acceptance-checklist-and-support-handover",
+      "title": "Acceptance checklist and support handover",
+      "blocks": [
+        {
+          "kind": "purpose",
+          "role": "HR owner and deployment reviewer",
+          "result": "Confirm the configured company workflow is ready for routine use."
+        },
+        {
+          "kind": "heading",
+          "text": "Configuration acceptance",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "The installed JAR and dictionary package are compatible with this guide’s baseline or a reviewed later version.",
+            "Employee, supervisor, organization and role access are correct.",
+            "Roster, policy, calendar, legal applicability and assignment versions are reviewed and date-effective.",
+            "Grace, rounding, break, night/five-day and payable decisions have company references.",
+            "The actual holiday calendar and employee work population have been checked."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "heading",
+          "text": "End to end acceptance",
+          "level": 2
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Valid CSV imports only once; duplicate retry creates no duplicate punches.",
+            "Unknown codes, bad timestamps, missing/extra punches and missing setup are highlighted.",
+            "A person with no punches appears in expected-day investigation.",
+            "Full/partial leave, rest days, holidays and overnight shifts have correct expectations.",
+            "Employee submission reaches the intended supervisor; self and unrelated decisions are blocked.",
+            "Corrections preserve originals and re-open required review; evidence controls work.",
+            "Overtime authorization and HR payable decisions are distinct.",
+            "Period close blocks unresolved work; eligible reopen and draft void paths reconcile.",
+            "Payroll handoff, independent completion and later compensation are traceable without duplicate quantities.",
+            "Reports, notices, assisted contact and any enabled schedules are understood by their owners."
+          ],
+          "ordered": false
+        },
+        {
+          "kind": "heading",
+          "text": "What to include in a support case",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "Provide the screen name, employee code or approved internal identifier, organization, work date/range, upload batch or document number, exact error text, role name, action attempted and the relevant source/review status. Include the installed versions and whether the issue occurs after refresh/re-login. Use approved secure channels for evidence; never include passwords or unnecessary personal data."
+        },
+        {
+          "kind": "heading",
+          "text": "Guide maintenance",
+          "level": 2
+        },
+        {
+          "kind": "paragraph",
+          "text": "This edition follows plugin 13.0.0.202611130100 and dictionary layout 1.66.0. Recheck the guide when forms, process parameters, authorization rules or company policies change. Installation validation and technical tests do not replace company-specific role review and browser acceptance of the real operating flows."
+        }
+      ]
+    }
+  ]
+}

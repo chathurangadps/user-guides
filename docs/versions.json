@@ -1,0 +1,29 @@
+{
+  "current": "1.1.2",
+  "versions": [
+    {
+      "version": "1.1.2",
+      "path": "versions/v1.1.2/index.html",
+      "date": "2026-11-13",
+      "plugin": "13.0.0.202611130100",
+      "dictionary": "1.66.0",
+      "status": "Published user guide"
+    },
+    {
+      "version": "1.1.1",
+      "path": "versions/v1.1.1/index.html",
+      "date": "2026-11-13",
+      "plugin": "13.0.0.202611130100",
+      "dictionary": "1.65.0",
+      "status": "Internal review edition"
+    },
+    {
+      "version": "1.1",
+      "path": "versions/v1.1/index.html",
+      "date": "2026-11-13",
+      "plugin": "13.0.0.202611130100",
+      "dictionary": "1.65.0",
+      "status": "Internal review edition"
+    }
+  ]
+}

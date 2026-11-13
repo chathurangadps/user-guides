@@ -1,0 +1,78 @@
+[
+  {
+    "file": "attendance-record-example.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      0,
+      123,
+      2560,
+      1409
+    ],
+    "size": [
+      2560,
+      1286
+    ],
+    "validation": "Exact crop of native-decoded source, no resize or redrawing",
+    "sha256": "5ef384ad2acef9e125688382a8082586899a93a9f39c9315a8fecd44712c0503"
+  },
+  {
+    "file": "calendar-2026.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      0,
+      123,
+      2560,
+      1409
+    ],
+    "size": [
+      2560,
+      1286
+    ],
+    "validation": "Exact crop of native-decoded source, no resize or redrawing",
+    "sha256": "46f642764d3b7517866a618debb58094021e37b5da634325cb02f93c0db779db"
+  },
+  {
+    "file": "import-result-example.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      0,
+      123,
+      2560,
+      1409
+    ],
+    "size": [
+      2560,
+      1286
+    ],
+    "validation": "Exact crop of native-decoded source, no resize or redrawing",
+    "sha256": "92145e2f79d5f8cf7aee004047bb367de376d3c0cb583f994b42dafdef8c8da4"
+  },
+  {
+    "file": "preview-example.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      0,
+      123,
+      2560,
+      1409
+    ],
+    "size": [
+      2560,
+      1286
+    ],
+    "validation": "Exact crop of native-decoded source, no resize or redrawing",
+    "sha256": "ead294feb3eeac0fc7b6c099c523b88803e56da519837479190a19c01f8c039b"
+  }
+]

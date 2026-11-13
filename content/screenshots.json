@@ -1,0 +1,34 @@
+[
+  {
+    "file": "calendar-2026.png",
+    "chapter": "work-groups-shifts-and-calendars",
+    "title": "Human Resource Calendar: the 2026 year with twelve payroll periods.",
+    "caption": "Existing local SLERPTECH capture from the HR calendar validation artifact dated 12 November 2026. The year record is shared at organization *. This screen is a payroll calendar, not a holiday list.",
+    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
+    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+  },
+  {
+    "file": "preview-example.png",
+    "chapter": "upload-and-preview-attendance",
+    "title": "Preview flags an employee code that does not match the selected organization.",
+    "caption": "Historical demo UI; attendance date 6 November 2026. The selected organization cannot resolve the employee, so the group is not ready. Current layouts use row selection and collapsible sections. Capture date is not independently recorded.",
+    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
+    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+  },
+  {
+    "file": "import-result-example.png",
+    "chapter": "bulk-import-and-duplicate-protection",
+    "title": "Import completion and retained draft state.",
+    "caption": "Historical synthetic demo UI; attendance date 6 November 2026. Capture date is not independently recorded. Confirm imported counts and the completion message; import does not approve attendance.",
+    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
+    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+  },
+  {
+    "file": "attendance-record-example.png",
+    "chapter": "employee-calendar-and-attendance-review",
+    "title": "Native attendance document after import.",
+    "caption": "Historical synthetic demo UI; attendance date 6 November 2026. Capture date is not independently recorded. Document numbers and employee data are examples; current field layout may differ.",
+    "publication": "Browser chrome removed. Retains the original company/demo UI context.",
+    "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+  }
+]
