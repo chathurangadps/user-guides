@@ -1,55 +1,93 @@
 #!/usr/bin/env python3
-"""Build a dependency-free, offline-capable guide from reviewed chapter content."""
+"""Build registered modules, the guide directory and compatibility links."""
 from pathlib import Path
-import html,json,re,shutil
-root=Path(__file__).resolve().parent.parent
-data=json.loads((root/'content/guide.json').read_text())
-screens=json.loads((root/'content/screenshots.json').read_text())
-m=data['metadata'];chapters=data['chapters'];version=m['guide_version']
-def esc(s):return html.escape(str(s),quote=True)
-def rich(s):
- return re.sub(r'\*\*(.*?)\*\*',r'<strong>\1</strong>',esc(s)).replace('\n','<br>')
-def block(b):
- k=b['kind']
- if k=='paragraph':return '<p>'+rich(b['text'])+'</p>'
- if k=='heading':return '<h{0}>{1}</h{0}>'.format(min(3,max(2,b['level'])),rich(b['text']))
- if k=='purpose':return '<div class="purpose"><div><strong>Who uses this</strong>'+rich(b['role'])+'</div><div><strong>Outcome</strong>'+rich(b['result'])+'</div></div>'
- if k=='check':return '<div class="check"><strong>Completion check</strong>'+rich(b['text'])+'</div>'
- if k=='list':
-  tag='ol' if b['ordered'] else 'ul'
-  return '<'+tag+'>'+''.join('<li>'+rich(x)+'</li>' for x in b['items'])+'</'+tag+'>'
- if k=='table':return '<div class="table-wrap" tabindex="0" role="region" aria-label="'+esc('Table: '+', '.join(map(str,b['headers'])))+'"><table><thead><tr>'+''.join('<th scope="col">'+rich(x)+'</th>' for x in b['headers'])+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td>'+rich(x)+'</td>' for x in row)+'</tr>' for row in b['rows'])+'</tbody></table></div>'
- raise ValueError(k)
-toc='<li><a href="#home"><span>⌂</span>Guide home</a></li>'+''.join(f'<li><a href="#{c["id"]}"><span>{i:02}</span>{esc(c["title"])}</a></li>' for i,c in enumerate(chapters,1))
-body=[]
-for i,c in enumerate(chapters):
- images=''
- for s in screens:
-  if s['chapter']!=c['id']:continue
-  src='assets/screens/'+s['file']
-  images+=f'<figure><a href="{src}" target="_blank" rel="noopener"><img loading="lazy" src="{src}" alt="{esc(s["title"])}"></a><figcaption><strong>{esc(s["title"])}</strong>{esc(s["caption"])} <a href="{src}" target="_blank" rel="noopener">Open full-size screen</a></figcaption></figure>'
- nav='<nav class="chapter-nav" aria-label="Chapter navigation">'
- nav+=f'<a href="#{chapters[i-1]["id"]}"><small>Previous</small>{esc(chapters[i-1]["title"])}</a>' if i else '<a href="#home"><small>Previous</small>Guide home</a>'
- nav+=f'<a href="#{chapters[i+1]["id"]}"><small>Next</small>{esc(chapters[i+1]["title"])}</a>' if i+1<len(chapters) else '<a href="#home"><small>Finished</small>Back to guide home</a>'
- body.append(f'<article class="chapter" id="{c["id"]}" data-title="{esc(c["title"])}"><p class="eyebrow">Chapter {i+1:02} / {len(chapters)}</p><h1>{esc(c["title"])}</h1>'+''.join(block(b) for b in c['blocks'])+(f'<details><summary>Screen examples and capture notes</summary>{images}</details>' if images else '')+nav+'</nav></article>')
-versions=[]
-for record in (root/'docs/versions').glob('v*/metadata.json'):
- prior=json.loads(record.read_text())
- if prior['version']!=version:versions.append(prior)
-versions.append({'version':version,'path':'versions/v'+version+'/index.html','date':m['date'],'plugin':m['plugin_version'],'dictionary':m['dictionary_version'],'status':m['status']})
-versions.sort(key=lambda x:tuple(int(n) for n in x['version'].split('.')),reverse=True)
-version_options=''.join('<option value="../v'+esc(v['version'])+'/index.html"'+(' selected' if v['version']==version else '')+'>v'+esc(v['version'])+'</option>' for v in versions)
-template=(root/'content/template.html').read_text()
-values={'VERSION':version,'VERSION_OPTIONS':version_options,'STATUS':esc(m['status']),'DATE':m['date'],'PLUGIN':m['plugin_version'],'PACKIN':m['dictionary_version'],'COMPANY_PACKIN':m['company_packin_version'],'TOC':toc,'BODY':'\n'.join(body),'CHANGES':''.join('<li>'+esc(x)+'</li>' for x in m['changes']),'CHAPTER_COUNT':str(len(chapters))}
-for key,value in values.items():template=template.replace('{{'+key+'}}',value)
-if re.search(r'\{\{\w+\}\}',template):raise ValueError('Unresolved template placeholder')
-dest=root/'docs/versions'/('v'+version);dest.mkdir(parents=True,exist_ok=True)
-(dest/'index.html').write_text(template)
-shutil.copytree(root/'docs/assets',dest/'assets',dirs_exist_ok=True)
-(root/'docs/index.html').write_text(f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SLERPTECH User Guide</title><meta http-equiv="refresh" content="0;url=versions/v{version}/index.html"></head><body><p><a href="versions/v{version}/index.html">Open SLERPTECH Time &amp; Attendance Guide v{version}</a></p></body></html>')
-(dest/'metadata.json').write_text(json.dumps(next(v for v in versions if v['version']==version),indent=2)+'\n')
-(root/'docs/versions.json').write_text(json.dumps({'current':version,'versions':versions},indent=2)+'\n')
-edition_rows=''.join('<tr><td><a href="v'+esc(v['version'])+'/index.html">v'+esc(v['version'])+'</a>'+(' — latest' if v['version']==version else '')+'</td><td>'+esc(v['date'])+'</td><td>'+esc(v['plugin'])+'</td><td>'+esc(v['dictionary'])+'</td></tr>' for v in versions)
-(root/'docs/versions/index.html').write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>SLERPTECH Guide Editions</title><link rel="stylesheet" href="../assets/guide.css"></head><body><main style="margin:0 auto;max-width:1100px;padding:32px"><p class="eyebrow">SLERPTECH · iDempiere 13</p><h1>Time &amp; Attendance guide editions</h1><p><a href="../index.html">Open the latest edition</a>. Choose an earlier edition to match the instructions to your installed release.</p><div class="table-wrap"><table><thead><tr><th>Guide</th><th>Published</th><th>Plugin</th><th>Dictionary Pack In</th></tr></thead><tbody>'+edition_rows+'</tbody></table></div><p>Each edition retains its own HTML, styles and cropped screenshots.</p></main></body></html>')
-(root/'docs/.nojekyll').touch()
-print(f'Built {len(chapters)} chapters, {len(screens)} screen examples: {dest}/index.html')
+import html
+import json
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parent.parent
+SITE = ROOT / 'docs'
+
+
+def redirect(title, target):
+    # Keep chapter bookmarks when a guide moves or a module's latest version changes.
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width,initial-scale=1">'
+            '<title>' + html.escape(title) + '</title>'
+            '<script>location.replace(' + json.dumps(target) + '+location.search+location.hash);</script>'
+            '<noscript><meta http-equiv="refresh" content="0;url=' + html.escape(target, quote=True) + '"></noscript>'
+            '</head><body><p><a href="' + html.escape(target, quote=True) + '">'
+            + html.escape(title) + '</a></p></body></html>\n')
+
+
+modules = json.loads((ROOT / 'modules.json').read_text())['modules']
+cards = []
+catalog = []
+for module in modules:
+    slug = module['id']
+    source = ROOT / 'modules' / slug
+    destination = SITE / 'modules' / slug
+    subprocess.run([sys.executable, str(source / 'tools/build.py')], check=True)
+    editions = json.loads((destination / 'versions.json').read_text())
+    latest = editions['current']
+    (destination / 'index.html').write_text(redirect(
+        'Open ' + module['title'] + ' guide v' + latest,
+        'versions/v' + latest + '/index.html'))
+    (source / 'OPEN-GUIDE.html').write_text(redirect(
+        'Open ' + module['title'] + ' guide', '../../docs/modules/' + slug + '/index.html'))
+    href = 'modules/' + slug + '/'
+    versions = ' · '.join('<a href="' + href + 'versions/v' + html.escape(v['version'])
+                          + '/index.html">v' + html.escape(v['version']) + '</a>'
+                          for v in editions['versions'])
+    cards.append('<article><p class="eyebrow">Latest edition · v' + html.escape(latest)
+                 + '</p><h2>' + html.escape(module['title']) + '</h2><p>'
+                 + html.escape(module['description']) + '</p><div class="actions"><a class="primary" href="'
+                 + href + '">Open guide</a><a href="' + href + 'versions/">Version history</a></div>'
+                 + '<p class="versions">Available editions: ' + versions + '</p></article>')
+    catalog.append({**module, 'current': latest, 'path': href,
+                    'versions': href + 'versions.json'})
+
+style = '''
+:root{color-scheme:light;--ink:#242b3b;--accent:#63428c;--line:#dfe1e9}
+*{box-sizing:border-box}body{margin:0;background:#f7f8fc;color:var(--ink);font:16px/1.6 system-ui,-apple-system,sans-serif}
+header{background:#2f2244;color:white;padding:24px max(24px,calc((100vw - 1100px)/2))}header strong{display:block;letter-spacing:.05em}header small{opacity:.8}
+main{max-width:1150px;margin:auto;padding:40px 24px}h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0 0 16px}h2{font-size:25px;margin:0 0 12px}
+.lead{max-width:750px;color:#535d6c;margin-bottom:32px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px}
+article{background:white;border:1px solid var(--line);border-radius:12px;padding:28px}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.06em;font-size:12px;font-weight:750}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #a889c5;outline-offset:4px}.actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin:24px 0}
+.primary{background:var(--accent);color:white;padding:10px 18px;border-radius:6px;text-decoration:none;font-weight:650}.versions{border-top:1px solid var(--line);padding-top:18px;margin-bottom:0}
+footer{color:#667080;font-size:14px;margin-top:36px}.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;background:white;padding:8px}
+'''
+(SITE / 'index.html').write_text(
+    '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+    '<meta name="robots" content="noindex,nofollow"><title>SLERPTECH User Guides</title><style>' + style + '</style></head>'
+    '<body><a class="skip" href="#main">Skip to guides</a><header><strong>SLERPTECH</strong><small>iDempiere 13 · User documentation</small></header>'
+    '<main id="main"><h1>User guides</h1><p class="lead">Choose a module, then open its latest guide or an earlier edition that matches your installed release.</p>'
+    '<section class="cards" aria-label="Available modules">' + ''.join(cards) + '</section>'
+    '<footer>Each module keeps its own version history, instructions and screenshots.</footer></main></body></html>\n')
+(SITE / 'modules.json').write_text(json.dumps({'modules': catalog}, indent=2) + '\n')
+(SITE / '.nojekyll').touch()
+(ROOT / 'OPEN-GUIDE.html').write_text(redirect('Open SLERPTECH user guides', 'docs/index.html'))
+
+# Previously shared Time & Attendance URLs remain small redirects, not duplicate guides.
+attendance = SITE / 'modules/time-attendance'
+if attendance.exists():
+    editions = json.loads((attendance / 'versions.json').read_text())
+    legacy = SITE / 'versions'
+    legacy.mkdir(exist_ok=True)
+    (legacy / 'index.html').write_text(redirect(
+        'Time & Attendance guide editions', '../modules/time-attendance/versions/index.html'))
+    for edition in editions['versions']:
+        version = edition['version']
+        old = legacy / ('v' + version)
+        old.mkdir(exist_ok=True)
+        (old / 'index.html').write_text(redirect(
+            'Time & Attendance guide v' + version,
+            '../../modules/time-attendance/versions/v' + version + '/index.html'))
+    (SITE / 'versions.json').write_text(json.dumps({
+        'module': 'time-attendance', 'current': editions['current'],
+        'versions': [{**v, 'path': 'modules/time-attendance/' + v['path']}
+                     for v in editions['versions']]
+    }, indent=2) + '\n')
+print('Built module directory, module entry links and legacy URL redirects.')

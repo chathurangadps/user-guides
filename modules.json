@@ -1,0 +1,9 @@
+{
+  "modules": [
+    {
+      "id": "time-attendance",
+      "title": "Time & Attendance",
+      "description": "Company setup, shifts and rosters, attendance import, corrections, supervisor review, period closing and payroll handoff."
+    }
+  ]
+}
