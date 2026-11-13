@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="461" viewBox="0 0 1000 461" role="img" aria-labelledby="title desc">
+<title id="title">Resolve the cause of an exception, then revalidate</title>
+<desc id="desc">Start with the issue category. A mapping problem, a missing assignment and a missing punch require different evidence. UNMATCHED: verify the employee code and selected organization; map only when the identity is known. SETUP: resolve effective roster/policy/employee coverage through reviewed masters and assignments. PUNCH_ISSUE or INVALID: verify original timestamps, distinct punches and the date scope; correct only with evidence. MISSING: investigate the expected day, approved leave, holiday and source feed. No punches alone does not prove absence.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65748b"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#ffffff"/>
+<g fill="none" stroke="#65748b" stroke-width="2" stroke-linejoin="round">
+<path d="M312,163 L364,163" marker-end="url(#arrow)"/>
+<path d="M636,163 L688,163" marker-end="url(#arrow)"/>
+<path d="M824,226 L824,300" marker-end="url(#arrow)"/>
+<path d="M688,363 L636,363" marker-end="url(#arrow)"/>
+<path d="M364,363 L312,363" marker-end="url(#arrow)"/>
+</g><g font-family="Arial, Helvetica, sans-serif">
+<rect x="40" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="58" y="129" font-size="18" font-weight="700" fill="#352347">Filter the issue list</text>
+<text x="58" y="177" font-size="14" fill="#4e5d72">Attendance user · status and</text>
+<text x="58" y="195" font-size="14" fill="#4e5d72">issue type</text>
+<rect x="364" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="129" font-size="18" font-weight="700" fill="#352347">Open the employee-day</text>
+<text x="382" y="177" font-size="14" fill="#4e5d72">Select the grid row to see source</text>
+<text x="382" y="195" font-size="14" fill="#4e5d72">details</text>
+<rect x="688" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="129" font-size="18" font-weight="700" fill="#352347">Identify the cause</text>
+<text x="706" y="177" font-size="14" fill="#4e5d72">Code, dates, setup or missing</text>
+<text x="706" y="195" font-size="14" fill="#4e5d72">evidence</text>
+<rect x="688" y="300" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="329" font-size="18" font-weight="700" fill="#352347">Use the owning workflow</text>
+<text x="706" y="377" font-size="14" fill="#4e5d72">Fix reviewed setup or supported</text>
+<text x="706" y="395" font-size="14" fill="#4e5d72">evidence</text>
+<rect x="364" y="300" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="329" font-size="18" font-weight="700" fill="#352347">Record a clear reason</text>
+<text x="382" y="377" font-size="14" fill="#4e5d72">Keep original rows and audit</text>
+<text x="382" y="395" font-size="14" fill="#4e5d72">history</text>
+<rect x="40" y="300" width="272" height="126" rx="10" fill="#eaf6f0" stroke="#39765c" stroke-width="1.5"/>
+<text x="58" y="329" font-size="18" font-weight="700" fill="#23513e">Preview again</text>
+<text x="58" y="377" font-size="14" fill="#4e5d72">Confirm the group is eligible</text>
+</g></svg>

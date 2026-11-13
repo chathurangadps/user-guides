@@ -1,0 +1,1216 @@
+[
+  {
+    "id": "01-end-to-end",
+    "file": "01-end-to-end.svg",
+    "chapter": "how-the-module-works",
+    "title": "From schedule to payroll: nine distinct checkpoints",
+    "summary": "Read left to right, then follow the arrows. Every stage keeps its own status and responsible role.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Reviewed setup",
+        "detail": "HR · employees, schedules and rules",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Expected days",
+        "detail": "HR · include days without punches",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Preview and resolve",
+        "detail": "Attendance user · source evidence",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Import drafts",
+        "detail": "Attendance user · save native punches",
+        "kind": "action",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Supervisor review",
+        "detail": "Assigned reviewer · approve or return",
+        "kind": "action",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "Payable decisions",
+        "detail": "HR · regular and overtime separately",
+        "kind": "action",
+        "col": 0,
+        "row": 1
+      },
+      {
+        "id": "7",
+        "label": "Close attendance period",
+        "detail": "Period owner · clear readiness checks",
+        "kind": "action",
+        "col": 0,
+        "row": 2
+      },
+      {
+        "id": "8",
+        "label": "Stage payroll inputs",
+        "detail": "Payroll maker · Draft incidences",
+        "kind": "action",
+        "col": 1,
+        "row": 2
+      },
+      {
+        "id": "9",
+        "label": "Independent check",
+        "detail": "Payroll checker · then normal payroll",
+        "kind": "success",
+        "col": 2,
+        "row": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4"
+      },
+      {
+        "from": "4",
+        "to": "5"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      },
+      {
+        "from": "6",
+        "to": "7"
+      },
+      {
+        "from": "7",
+        "to": "8"
+      },
+      {
+        "from": "8",
+        "to": "9"
+      }
+    ],
+    "steps": [
+      "Complete reviewed setup and generate the employee-days expected in the range.",
+      "Preview, resolve exceptions and import eligible attendance as drafts.",
+      "Obtain supervisor review, then separate payable decisions.",
+      "Close the attendance period, stage the approved inputs and obtain independent incidence checking before the normal payroll run."
+    ],
+    "checkpoint": "An import success message is not an attendance approval, a period close or a completed payroll run."
+  },
+  {
+    "id": "02-setup",
+    "file": "02-setup.svg",
+    "chapter": "first-time-setup-sequence",
+    "title": "Prepare masters, review them, then assign effective coverage",
+    "summary": "Work from the employee and schedule masters toward one reviewed roster and policy for each work date.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Employee identity",
+        "detail": "HR · organization, code, user, supervisor",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Shifts and calendars",
+        "detail": "HR · actual times, breaks, holidays",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Roster and policy",
+        "detail": "HR maker · create draft versions",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Independent review",
+        "detail": "Different authorized HR reviewer",
+        "kind": "action",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Effective assignments",
+        "detail": "Roster, policy and legal coverage",
+        "kind": "action",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "Assignment approval",
+        "detail": "Independent review and date checks",
+        "kind": "action",
+        "col": 0,
+        "row": 1
+      },
+      {
+        "id": "7",
+        "label": "Coverage report",
+        "detail": "HR · find missing or ambiguous dates",
+        "kind": "action",
+        "col": 0,
+        "row": 2
+      },
+      {
+        "id": "8",
+        "label": "Generate expected days",
+        "detail": "Attendance user · reviewed scope",
+        "kind": "success",
+        "col": 1,
+        "row": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4"
+      },
+      {
+        "from": "4",
+        "to": "5"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      },
+      {
+        "from": "6",
+        "to": "7"
+      },
+      {
+        "from": "7",
+        "to": "8"
+      }
+    ],
+    "steps": [
+      "Confirm employee identity and supervisor routing before assigning a schedule.",
+      "Prepare draft roster/policy versions and obtain the required independent review.",
+      "Create and approve effective roster, policy and legal-regime assignments.",
+      "Use the coverage report to resolve gaps or overlaps, then generate expected days."
+    ],
+    "checkpoint": "Active is not the same as approved. Missing or ambiguous effective coverage must be resolved before processing."
+  },
+  {
+    "id": "03-five-day-rotation",
+    "file": "03-five-day-rotation.svg",
+    "chapter": "roster-cycles-breaks-and-overnight-work",
+    "title": "A five-day rotation with an overnight third shift",
+    "summary": "This is the accepted SLERPTECH IT-operations proposal. Day offsets are relative to the cycle start, not weekday numbers.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Offset 0 · Day",
+        "detail": "06:00–14:00 · same calendar date",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Offset 1 · Evening",
+        "detail": "14:00–22:00 · same calendar date",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Offset 2 · Night",
+        "detail": "22:00–06:00 · ends the following date",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Offset 3 · Off",
+        "detail": "Rest day · no scheduled shift",
+        "kind": "pause",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Offset 4 · Off",
+        "detail": "Rest day · no scheduled shift",
+        "kind": "pause",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "Repeat offset 0",
+        "detail": "Cycle length: 5 days",
+        "kind": "success",
+        "col": 0,
+        "row": 1
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4"
+      },
+      {
+        "from": "4",
+        "to": "5"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      }
+    ],
+    "steps": [
+      "Assign the appropriate team cycle and effective dates; verify the cycle-start reference.",
+      "Keep next-day checkout timestamps for night work. Resolve the work date from the reviewed schedule.",
+      "The proposal includes a one-hour unpaid break, starting four hours after shift start; continuous coverage needs break relief.",
+      "Review company applicability and night-work requirements before approval and employee assignment."
+    ],
+    "checkpoint": "The diagram illustrates a proposed company rotation. It does not establish statutory working-time or night-work approval."
+  },
+  {
+    "id": "04-import",
+    "file": "04-import.svg",
+    "chapter": "bulk-import-and-duplicate-protection",
+    "title": "Import the ready groups while retaining exceptions",
+    "summary": "Review import covers all ready employee-days in the saved batch, across pages and regardless of display filters.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Upload or resume",
+        "detail": "Attendance user · organization and dates",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Preview / refresh",
+        "detail": "Validate the current batch version",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Any ready groups?",
+        "detail": "Current validation result",
+        "kind": "decision",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "4",
+        "label": "Keep exceptions",
+        "detail": "Filter, export and correct with reasons",
+        "kind": "pause",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Review import",
+        "detail": "Confirm all-ready counts and scope",
+        "kind": "action",
+        "col": 1,
+        "row": 2
+      },
+      {
+        "id": "6",
+        "label": "Import drafts",
+        "detail": "Recheck eligibility and duplicates",
+        "kind": "action",
+        "col": 1,
+        "row": 3
+      },
+      {
+        "id": "7",
+        "label": "Verify result",
+        "detail": "Saved Draft counts and source links",
+        "kind": "success",
+        "col": 2,
+        "row": 3
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2",
+        "label": ""
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "label": ""
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "label": "No"
+      },
+      {
+        "from": "4",
+        "to": "2",
+        "label": "Re-preview",
+        "via": [
+          [
+            824,
+            40
+          ],
+          [
+            500,
+            40
+          ]
+        ]
+      },
+      {
+        "from": "3",
+        "to": "5",
+        "label": "Yes"
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "label": ""
+      },
+      {
+        "from": "6",
+        "to": "7",
+        "label": ""
+      },
+      {
+        "from": "7",
+        "to": "4",
+        "label": "If issues remain"
+      }
+    ],
+    "steps": [
+      "Upload or resume and run Preview / Refresh.",
+      "Ready groups may proceed together; exceptions remain in the batch for later resolution.",
+      "Review the confirmation counts. Filters and the current page do not restrict the all-ready import scope.",
+      "After import, compare counts and source links. Re-upload or retry uses duplicate protection rather than adding the same protected punch again."
+    ],
+    "checkpoint": "No ready groups means no import to confirm. Correct the cause and refresh the preview; do not add invented evidence to make a row pass."
+  },
+  {
+    "id": "05-exception-triage",
+    "file": "05-exception-triage.svg",
+    "chapter": "resolve-validation-and-import-exceptions",
+    "title": "Resolve the cause of an exception, then revalidate",
+    "summary": "Start with the issue category. A mapping problem, a missing assignment and a missing punch require different evidence.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Filter the issue list",
+        "detail": "Attendance user · status and issue type",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Open the employee-day",
+        "detail": "Select the grid row to see source details",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Identify the cause",
+        "detail": "Code, dates, setup or missing evidence",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Use the owning workflow",
+        "detail": "Fix reviewed setup or supported evidence",
+        "kind": "action",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Record a clear reason",
+        "detail": "Keep original rows and audit history",
+        "kind": "action",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "Preview again",
+        "detail": "Confirm the group is eligible",
+        "kind": "success",
+        "col": 0,
+        "row": 1
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4"
+      },
+      {
+        "from": "4",
+        "to": "5"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      }
+    ],
+    "steps": [
+      "UNMATCHED: verify the employee code and selected organization; map only when the identity is known.",
+      "SETUP: resolve effective roster/policy/employee coverage through reviewed masters and assignments.",
+      "PUNCH_ISSUE or INVALID: verify original timestamps, distinct punches and the date scope; correct only with evidence.",
+      "MISSING: investigate the expected day, approved leave, holiday and source feed. No punches alone does not prove absence."
+    ],
+    "checkpoint": "A correction reason explains the evidence; it is not a substitute for the evidence. Imported or reviewed records may require the formal correction workflow."
+  },
+  {
+    "id": "06-expected-days",
+    "file": "06-expected-days.svg",
+    "chapter": "generate-expected-attendance-and-recalculate",
+    "title": "Find no-punch days without inventing attendance",
+    "summary": "Expected attendance starts from the employee population and reviewed schedule, not from whoever appears in a CSV.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Choose organization / range",
+        "detail": "HR · include the full intended scope",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Resolve effective setup",
+        "detail": "Employment, roster, policy, calendar",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Classify the expectation",
+        "detail": "Workday, rest day, holiday or leave",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Compare recorded evidence",
+        "detail": "Uploaded or saved attendance",
+        "kind": "action",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Flag gaps for review",
+        "detail": "Missing evidence is not absence",
+        "kind": "pause",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "Recalculate after changes",
+        "detail": "Refresh affected days and reports",
+        "kind": "success",
+        "col": 0,
+        "row": 1
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4"
+      },
+      {
+        "from": "4",
+        "to": "5"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      }
+    ],
+    "steps": [
+      "Generate expected attendance for a reviewed organization/date range, up to 31 days per process run.",
+      "Check working days, roster rest days, holiday classifications and approved full/partial leave.",
+      "Compare expected days with actual recorded punches, including employees who have none.",
+      "Resolve setup and evidence issues, then process applicable recalculation and review steps."
+    ],
+    "checkpoint": "Generation creates expectations and review findings. It does not create punches, approve attendance or create a payroll deduction."
+  },
+  {
+    "id": "07-supervisor",
+    "file": "07-supervisor.svg",
+    "chapter": "supervisor-review-and-team-approval",
+    "title": "Submit attendance, then approve it or return it for clarification",
+    "summary": "The assigned supervisor decides on the submitted revision. Review approval remains separate from document completion and pay.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Draft attendance",
+        "detail": "Employee / authorized HR · check punches",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Submit with comment",
+        "detail": "Route to the assigned supervisor",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Review decision",
+        "detail": "Assigned reviewer only",
+        "kind": "decision",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "4",
+        "label": "Return for correction",
+        "detail": "Employee clarifies and resubmits",
+        "kind": "pause",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Supervisor approved",
+        "detail": "Record decision and audit event",
+        "kind": "success",
+        "col": 1,
+        "row": 2
+      },
+      {
+        "id": "6",
+        "label": "Separate payable review",
+        "detail": "HR · approved quantities and references",
+        "kind": "action",
+        "col": 2,
+        "row": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2",
+        "label": ""
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "label": ""
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "label": "Return"
+      },
+      {
+        "from": "4",
+        "to": "2",
+        "label": "Resubmit",
+        "via": [
+          [
+            824,
+            40
+          ],
+          [
+            500,
+            40
+          ]
+        ]
+      },
+      {
+        "from": "3",
+        "to": "5",
+        "label": "Approve"
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "label": ""
+      }
+    ],
+    "steps": [
+      "The employee or authorized HR reviews the draft and submits it with a comment.",
+      "The assigned supervisor checks punches, evidence and the current revision.",
+      "Return a disputed record for clarification; an eligible corrected record must be submitted again.",
+      "Approval records the supervisor decision. It does not automatically complete the native document or payroll."
+    ],
+    "checkpoint": "Bulk approval rechecks each eligible submitted record in the searched scope; self-approval, synthetic data and conflicts are not silently accepted."
+  },
+  {
+    "id": "08-corrections",
+    "file": "08-corrections.svg",
+    "chapter": "attendance-correction-requests",
+    "title": "A correction is proposed, approved and then applied",
+    "summary": "Approving the request does not by itself rewrite native attendance. Application has its own state and consistency checks.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Select eligible day",
+        "detail": "Employee · load original punches",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Propose complete times",
+        "detail": "Include valid unchanged times and reason",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Save draft / submit",
+        "detail": "Attach allowed supporting evidence",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Supervisor reviews",
+        "detail": "Approve, return or reject the proposal",
+        "kind": "action",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Approved proposal",
+        "detail": "Ready for separate application checks",
+        "kind": "pause",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "HR applies correction",
+        "detail": "Recheck revision, period and payroll state",
+        "kind": "action",
+        "col": 0,
+        "row": 1
+      },
+      {
+        "id": "7",
+        "label": "Recalculate / re-review",
+        "detail": "Preserve originals and correction history",
+        "kind": "success",
+        "col": 0,
+        "row": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4"
+      },
+      {
+        "from": "4",
+        "to": "5",
+        "label": "Approved"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      },
+      {
+        "from": "6",
+        "to": "7"
+      }
+    ],
+    "steps": [
+      "Load the original employee-day and propose the full corrected timestamp list, with a reason and relevant evidence.",
+      "Save and submit the request. A returned request needs clarification and resubmission; a rejected request does not change punches.",
+      "After approval, use Apply Approved Attendance Correction for an eligible record.",
+      "The application step rechecks the current revision and period/payroll constraints, preserves the original evidence and triggers the required further review."
+    ],
+    "checkpoint": "An approved request can still be blocked from application if attendance, period or payroll state changed. Use the supported later correction route when required."
+  },
+  {
+    "id": "09-overtime",
+    "file": "09-overtime.svg",
+    "chapter": "overtime-requests-and-payable-review",
+    "title": "Worked time, authorized overtime and payable overtime are different",
+    "summary": "A late checkout is evidence of a recorded time, not an automatic entitlement to payable overtime.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Reviewed employee-day",
+        "detail": "Recorded work evidence is available",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Employee request",
+        "detail": "Requested minutes and reason",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Supervisor authorization",
+        "detail": "Approved minutes cannot exceed request",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "HR payable decision",
+        "detail": "Separate payable quantity and reference",
+        "kind": "action",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Period and handoff checks",
+        "detail": "Closed attendance; reviewed conversion",
+        "kind": "action",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "Independent incidence review",
+        "detail": "Draft payroll input checked separately",
+        "kind": "success",
+        "col": 0,
+        "row": 1
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "label": "Approved"
+      },
+      {
+        "from": "4",
+        "to": "5"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      }
+    ],
+    "steps": [
+      "Use an eligible supervisor-approved employee-day and a reason for the requested minutes.",
+      "The assigned supervisor approves or rejects the authorization request.",
+      "HR separately reviews what is payable under the applicable reviewed policy and evidence.",
+      "Use period close, reviewed conversion and independently checked Draft incidences for payroll handoff."
+    ],
+    "checkpoint": "Neither attendance approval nor overtime authorization is a statutory rate calculation or a completed payroll posting."
+  },
+  {
+    "id": "10-period-close",
+    "file": "10-period-close.svg",
+    "chapter": "attendance-period-close-and-reopen",
+    "title": "Close only after the readiness blockers are resolved",
+    "summary": "Readiness checks protect the complete period, including expected days that have no uploaded punches.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Select attendance period",
+        "detail": "Period owner · reviewed range and cutoff",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Check readiness",
+        "detail": "Review the complete period population",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Clear to close?",
+        "detail": "All required checks pass",
+        "kind": "decision",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "4",
+        "label": "Resolve blockers",
+        "detail": "Setup, evidence, review or recalculation",
+        "kind": "pause",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Close with reason",
+        "detail": "Cutoff and state checks still apply",
+        "kind": "action",
+        "col": 1,
+        "row": 2
+      },
+      {
+        "id": "6",
+        "label": "Closed attendance period",
+        "detail": "Eligible for separate payroll handoff",
+        "kind": "success",
+        "col": 2,
+        "row": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2",
+        "label": ""
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "label": ""
+      },
+      {
+        "from": "3",
+        "to": "4",
+        "label": "No"
+      },
+      {
+        "from": "4",
+        "to": "2",
+        "label": "Recheck",
+        "via": [
+          [
+            824,
+            40
+          ],
+          [
+            500,
+            40
+          ]
+        ]
+      },
+      {
+        "from": "3",
+        "to": "5",
+        "label": "Yes"
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "label": ""
+      }
+    ],
+    "steps": [
+      "Select the period and run Check readiness.",
+      "Resolve every blocking item through its owning workflow, including pending corrections, reviews, calculations or payable decisions.",
+      "Recheck readiness and the cutoff before closing with a reason.",
+      "If reopening is necessary, inspect linked payroll states first; processed payroll uses a supported correction/compensation route."
+    ],
+    "checkpoint": "Closed means the attendance period is controlled. It does not mean payroll inputs have been staged, checked or paid."
+  },
+  {
+    "id": "11-payroll-handoff",
+    "file": "11-payroll-handoff.svg",
+    "chapter": "payroll-handoff-and-independent-checking",
+    "title": "Stage reviewed quantities, then have a different checker review them",
+    "summary": "The handoff creates traceable native Draft incidences. The normal payroll calculation and payment remain separate.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Attendance period closed",
+        "detail": "Payroll maker · eligible sources only",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Select open payroll period",
+        "detail": "Must cover the full attendance range",
+        "kind": "action",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Review concept and units",
+        "detail": "Regular unit or explicit OT conversion",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Preview candidates",
+        "detail": "Check quantities, exclusions and links",
+        "kind": "action",
+        "col": 2,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Stage Draft incidences",
+        "detail": "Protected source/version linkage",
+        "kind": "action",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "6",
+        "label": "Independent checking",
+        "detail": "Different authorized incidence checker",
+        "kind": "action",
+        "col": 0,
+        "row": 1
+      },
+      {
+        "id": "7",
+        "label": "Normal payroll workflow",
+        "detail": "Calculate, reconcile and authorize pay",
+        "kind": "success",
+        "col": 0,
+        "row": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2"
+      },
+      {
+        "from": "2",
+        "to": "3"
+      },
+      {
+        "from": "3",
+        "to": "4"
+      },
+      {
+        "from": "4",
+        "to": "5"
+      },
+      {
+        "from": "5",
+        "to": "6"
+      },
+      {
+        "from": "6",
+        "to": "7"
+      }
+    ],
+    "steps": [
+      "Select a closed attendance period and the correct open HR payroll period.",
+      "Review the manual quantity input concept, mapping reference, units and rounding.",
+      "Inspect regular and overtime candidates separately, including exclusions and existing source links.",
+      "Stage eligible Draft incidences and obtain independent checking; reconcile before normal payroll processing."
+    ],
+    "checkpoint": "Do not manually create an extra incidence to overcome a retry or reconciliation issue. Inspect the protected source link first."
+  },
+  {
+    "id": "12-after-payroll",
+    "file": "12-after-payroll.svg",
+    "chapter": "corrections-after-payroll-handoff",
+    "title": "After handoff, preserve the original and correct through the right route",
+    "summary": "First inspect whether the linked incidence is still an eligible unprocessed Draft or has already completed payroll processing.",
+    "nodes": [
+      {
+        "id": "1",
+        "label": "Find source and incidence",
+        "detail": "HR / payroll · inspect linked state",
+        "kind": "action",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "2",
+        "label": "Still a Draft?",
+        "detail": "Unprocessed and eligible",
+        "kind": "decision",
+        "col": 1,
+        "row": 0
+      },
+      {
+        "id": "3",
+        "label": "Void eligible Draft",
+        "detail": "Reason and supported reconciliation",
+        "kind": "action",
+        "col": 2,
+        "row": 0
+      },
+      {
+        "id": "4",
+        "label": "Completed payroll route",
+        "detail": "Use a later open payroll period",
+        "kind": "pause",
+        "col": 1,
+        "row": 1
+      },
+      {
+        "id": "5",
+        "label": "Enter corrected TOTAL",
+        "detail": "Example: 7 hours total, not minus 1",
+        "kind": "action",
+        "col": 1,
+        "row": 2
+      },
+      {
+        "id": "6",
+        "label": "Compensating Draft",
+        "detail": "System derives adjustment from history",
+        "kind": "action",
+        "col": 2,
+        "row": 2
+      },
+      {
+        "id": "7",
+        "label": "Independent checking",
+        "detail": "Review adjustment and reconcile links",
+        "kind": "success",
+        "col": 2,
+        "row": 3
+      }
+    ],
+    "edges": [
+      {
+        "from": "1",
+        "to": "2",
+        "label": ""
+      },
+      {
+        "from": "2",
+        "to": "3",
+        "label": "Yes"
+      },
+      {
+        "from": "2",
+        "to": "4",
+        "label": "No: completed"
+      },
+      {
+        "from": "4",
+        "to": "5",
+        "label": ""
+      },
+      {
+        "from": "5",
+        "to": "6",
+        "label": ""
+      },
+      {
+        "from": "6",
+        "to": "7",
+        "label": ""
+      }
+    ],
+    "steps": [
+      "For an eligible unprocessed Draft, use the supported void/reconciliation action before other period changes.",
+      "For completed payroll, preserve the original incidence and select the permitted later open period.",
+      "Enter the corrected total quantity. The compensation workflow derives the adjustment against the recorded history.",
+      "Have a different authorized checker review the compensating Draft and reconcile the final linked result."
+    ],
+    "checkpoint": "Do not overwrite completed payroll history or enter a second full original amount as a manual correction."
+  }
+]

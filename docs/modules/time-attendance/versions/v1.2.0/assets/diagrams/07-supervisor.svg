@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="661" viewBox="0 0 1000 661" role="img" aria-labelledby="title desc">
+<title id="title">Submit attendance, then approve it or return it for clarification</title>
+<desc id="desc">The assigned supervisor decides on the submitted revision. Review approval remains separate from document completion and pay. The employee or authorized HR reviews the draft and submits it with a comment. The assigned supervisor checks punches, evidence and the current revision. Return a disputed record for clarification; an eligible corrected record must be submitted again. Approval records the supervisor decision. It does not automatically complete the native document or payroll.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65748b"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#ffffff"/>
+<g fill="none" stroke="#65748b" stroke-width="2" stroke-linejoin="round">
+<path d="M312,163 L364,163" marker-end="url(#arrow)"/>
+<path d="M500,226 L500,300" marker-end="url(#arrow)"/>
+<path d="M636,363 L688,363" marker-end="url(#arrow)"/>
+<path d="M824,300 L824,40 L500,40 L500,100" marker-end="url(#arrow)"/>
+<path d="M500,426 L500,500" marker-end="url(#arrow)"/>
+<path d="M636,563 L688,563" marker-end="url(#arrow)"/>
+</g><g font-family="Arial, Helvetica, sans-serif">
+<rect x="40" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="58" y="129" font-size="18" font-weight="700" fill="#352347">Draft attendance</text>
+<text x="58" y="177" font-size="14" fill="#4e5d72">Employee / authorized HR · check</text>
+<text x="58" y="195" font-size="14" fill="#4e5d72">punches</text>
+<rect x="364" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="129" font-size="18" font-weight="700" fill="#352347">Submit with comment</text>
+<text x="382" y="177" font-size="14" fill="#4e5d72">Route to the assigned supervisor</text>
+<path d="M500,300 L636,363 L500,426 L364,363 Z" fill="#fff5dd" stroke="#a27620" stroke-width="2"/>
+<text x="500" y="355" text-anchor="middle" font-weight="700" font-size="18" fill="#614914">Review decision</text>
+<text x="500" y="379" text-anchor="middle" font-size="13" fill="#614914">Assigned reviewer only</text>
+<rect x="688" y="300" width="272" height="126" rx="10" fill="#fff8e9" stroke="#ad8433" stroke-width="1.5"/>
+<text x="706" y="329" font-size="18" font-weight="700" fill="#624c20">Return for correction</text>
+<text x="706" y="377" font-size="14" fill="#4e5d72">Employee clarifies and resubmits</text>
+<rect x="364" y="500" width="272" height="126" rx="10" fill="#eaf6f0" stroke="#39765c" stroke-width="1.5"/>
+<text x="382" y="529" font-size="18" font-weight="700" fill="#23513e">Supervisor approved</text>
+<text x="382" y="577" font-size="14" fill="#4e5d72">Record decision and audit event</text>
+<rect x="688" y="500" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="529" font-size="18" font-weight="700" fill="#352347">Separate payable review</text>
+<text x="706" y="577" font-size="14" fill="#4e5d72">HR · approved quantities and</text>
+<text x="706" y="595" font-size="14" fill="#4e5d72">references</text>
+<text x="662" y="353" text-anchor="middle" font-size="13" font-weight="600" fill="#46536a" stroke="#fff" stroke-width="6" paint-order="stroke">Return</text>
+<text x="662" y="28" text-anchor="middle" font-size="13" font-weight="600" fill="#46536a" stroke="#fff" stroke-width="6" paint-order="stroke">Resubmit</text>
+<text x="500" y="453" text-anchor="middle" font-size="13" font-weight="600" fill="#46536a" stroke="#fff" stroke-width="6" paint-order="stroke">Approve</text>
+</g></svg>

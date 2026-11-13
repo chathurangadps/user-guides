@@ -30,5 +30,233 @@
     "caption": "Historical synthetic demo UI; attendance date 6 November 2026. Capture date is not independently recorded. Document numbers and employee data are examples; current field layout may differ.",
     "publication": "Browser chrome removed. Retains the original company/demo UI context.",
     "crop": "iDempiere interface only; browser tabs, address bar and bookmarks removed."
+  },
+  {
+    "file": "roster-rotation.png",
+    "chapter": "attendance-roster-setup",
+    "title": "Attendance Roster — the Team A rotation and its five cycle lines",
+    "caption": "Current SLERPTECH IT3 company master, captured 13 November 2026. This is a draft setup example pending company review, not an approved employee assignment.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "focus": [
+      {
+        "control": "Roster header",
+        "explanation": "Check the work organization, rotation mode, five-day cycle, cycle start date and Asia/Colombo time zone."
+      },
+      {
+        "control": "Cycle Lines",
+        "explanation": "Offsets 0, 1 and 2 carry Day, Evening and Night shifts. Offsets 3 and 4 are rest days. A day offset is a cycle position, not a calendar day of the month."
+      },
+      {
+        "control": "Break settings",
+        "explanation": "The example proposes 60 unpaid minutes starting 240 minutes after shift start. Review break relief and applicability before approval."
+      },
+      {
+        "control": "Review and assignments",
+        "explanation": "An Active checkbox alone does not approve the roster or assign it to an employee. Use the independent review and effective assignment steps."
+      }
+    ],
+    "outcome": "A reviewed roster version plus an effective, approved assignment must resolve one schedule for each employee-day."
+  },
+  {
+    "file": "attendance-policy.png",
+    "chapter": "attendance-policy-setup",
+    "title": "Attendance Policy — configured rules and unresolved review fields",
+    "caption": "Current IT3 draft policy, captured 13 November 2026 as HR Admin. Zero grace and no rounding are proposals in this master, not Sri Lankan statutory defaults.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "focus": [
+      {
+        "control": "Grace and rounding",
+        "explanation": "Distinguish an explicitly configured zero from an unreviewed value. Enter only the rules approved for the company and effective dates."
+      },
+      {
+        "control": "Break treatment",
+        "explanation": "Review the relationship between scheduled breaks and policy treatment; do not deduct a break twice."
+      },
+      {
+        "control": "Overtime, payable unit and absence",
+        "explanation": "Unreviewed or blocked values require a separate decision. They are not permission to calculate a deduction or payable overtime."
+      },
+      {
+        "control": "Source reference",
+        "explanation": "Retain the company review reference and the approved version. Assign that reviewed version through Policy Assignments."
+      }
+    ],
+    "outcome": "The policy is independently reviewed and its effective assignment covers the employee-day without overlap or gaps."
+  },
+  {
+    "file": "import-workbench.png",
+    "chapter": "upload-and-preview-attendance",
+    "title": "Attendance Import & Review — start with upload settings, then preview",
+    "caption": "Current form at first open, captured 13 November 2026 as HR Admin. No batch is selected in this view, so it does not show an import result.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "focus": [
+      {
+        "control": "Upload settings",
+        "explanation": "Select the employees’ work organization, inclusive date range and attendance document type. Include the actual next-day timestamps for overnight work."
+      },
+      {
+        "control": "Upload CSV / resume",
+        "explanation": "Upload a file or resume a saved batch. A saved batch retains its source and review history; New upload starts a separate upload context."
+      },
+      {
+        "control": "Preview / Refresh",
+        "explanation": "Build the current validation result. Expand Batch overview & filters to see ready groups, issues and the scope before importing."
+      },
+      {
+        "control": "Rows and details",
+        "explanation": "Click a row to open its evidence and correction details. Filters help investigation; they do not reduce the all-ready scope of Review import."
+      },
+      {
+        "control": "Review import",
+        "explanation": "This remains disabled until a current preview has eligible ready groups and the role has the necessary access."
+      }
+    ],
+    "outcome": "A current preview reports ready groups and exceptions. Review the final confirmation before native Draft attendance is created."
+  },
+  {
+    "file": "attendance-reviews.png",
+    "chapter": "supervisor-review-and-team-approval",
+    "title": "Attendance Reviews — filter, select and review team records",
+    "caption": "Current search and review form, captured 13 November 2026. This accessible date scope contains no records. Disabled actions illustrate the unselected state, not a completed approval.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "focus": [
+      {
+        "control": "Search filters",
+        "explanation": "Choose From date, To date, employee/document text and department. Date controls support the calendar picker."
+      },
+      {
+        "control": "Attendance records",
+        "explanation": "Select an eligible record to read its punches, review status and history. Empty results can mean no matching records or no access in the chosen scope."
+      },
+      {
+        "control": "Review comment",
+        "explanation": "Provide a meaningful submission or review comment; a blank comment is not a valid decision."
+      },
+      {
+        "control": "Approve all eligible",
+        "explanation": "Bulk approval uses the searched date/employee/department scope. It rechecks each submitted record and skips ineligible or changed records."
+      },
+      {
+        "control": "Assigned reviewer",
+        "explanation": "Only an authorized assigned supervisor/delegate can decide; seeing a record is not sufficient authority to approve it."
+      }
+    ],
+    "outcome": "Check the individual review result and audit event. Supervisor approval does not itself complete the native document or payroll."
+  },
+  {
+    "file": "period-control.png",
+    "chapter": "attendance-period-close-and-reopen",
+    "title": "Attendance Period Control — readiness comes before closing",
+    "caption": "Current HR Admin form, captured 13 November 2026 with no selected period. The screenshot shows controls only; no period was created, closed or reopened.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "focus": [
+      {
+        "control": "Create period",
+        "explanation": "Use the reviewed organization, name, date range and cutoff. A period is the control scope for attendance processing."
+      },
+      {
+        "control": "Check readiness",
+        "explanation": "Select the period and inspect its blockers before closing. Resolve missing setup, outstanding reviews and pending calculations through their owning workflows."
+      },
+      {
+        "control": "Exception treatment",
+        "explanation": "An exception needs evidence and an authorized treatment. Do not turn missing punches into absence automatically."
+      },
+      {
+        "control": "Close / Reopen",
+        "explanation": "Use a reason and the supported state transition. Linked payroll incidences can prevent reopening and may require a later compensating correction."
+      }
+    ],
+    "outcome": "Readiness is clear, the cutoff requirements are met and the period reports Closed. Payroll handoff is still a separate action."
+  },
+  {
+    "file": "payroll-handoff.png",
+    "chapter": "payroll-handoff-and-independent-checking",
+    "title": "Attendance Payroll Handoff — select periods, review units and stage drafts",
+    "caption": "Current HR Admin form, captured 13 November 2026. No closed attendance period is selected, so both source previews are empty and staging is disabled. Reconciliation continues below the visible area.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "focus": [
+      {
+        "control": "Closed attendance / open payroll period",
+        "explanation": "The payroll period must cover the entire attendance period and belong to the correct payroll."
+      },
+      {
+        "control": "Quantity concept and mapping",
+        "explanation": "Select the reviewed manual input concept, documented unit, rounding and mapping reference. Do not infer a conversion from the display label alone."
+      },
+      {
+        "control": "Two source previews",
+        "explanation": "Overtime comes from a separate payable overtime decision. Regular attendance comes from its independently approved quantity and keeps its DAY / HOUR / MINUTE unit."
+      },
+      {
+        "control": "Stage as Draft incidences",
+        "explanation": "Review sources and quantities before staging. Staging is not incidence completion or payroll finalization."
+      },
+      {
+        "control": "Existing handoff reconciliation",
+        "explanation": "Scroll down to compare source links and incidence states. Retry the protected workflow rather than entering duplicate payroll inputs."
+      }
+    ],
+    "outcome": "Each staged source has one traceable Draft incidence, then a different authorized checker completes incidence review before the normal payroll run."
+  },
+  {
+    "file": "operations-reports.png",
+    "chapter": "reports-and-operational-monitoring",
+    "title": "Attendance Operations Reports — select a report and inspect the summary",
+    "caption": "Current HR Admin report filters and summary, captured 13 November 2026 in the demo company. The selected report is Roster & policy assignment coverage. Its results table is below this crop; open that table to investigate individual findings.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace and report summary only; excludes browser chrome, account header, sidebar and the lower results table.",
+    "focus": [
+      {
+        "control": "Organization and report",
+        "explanation": "Choose the relevant organization and report type. Access is restricted by the role and selected organization."
+      },
+      {
+        "control": "Date range",
+        "explanation": "Review the whole operating or payroll range. A correct setup today does not prove coverage on every earlier day."
+      },
+      {
+        "control": "Summary and results",
+        "explanation": "Read the detail column for missing or ambiguous assignments. Zero summary counts do not override a row that explicitly reports missing setup."
+      },
+      {
+        "control": "Export CSV",
+        "explanation": "Export the chosen report for follow-up. Exports contain up to 2,000 rows; evidence reports export metadata, not the attached evidence files."
+      }
+    ],
+    "outcome": "Resolve the underlying setup or workflow issue, refresh the same scope and verify the finding is cleared; the report itself does not change attendance."
+  },
+  {
+    "file": "generate-expected.png",
+    "chapter": "generate-expected-attendance-and-recalculate",
+    "title": "Generate Expected Attendance — include employees who have no punches",
+    "caption": "Current process parameters, captured 13 November 2026. Required organization and document type are intentionally unselected; the process was not executed for this capture.",
+    "publication": "Read-only capture on 13 November 2026. No attendance or payroll transaction was performed for this screenshot.",
+    "crop": "ERP workspace only: browser tabs, address bar, bookmarks, account header and unrelated sidebar removed.",
+    "focus": [
+      {
+        "control": "Organization",
+        "explanation": "Choose the reviewed work organization whose employee-days should be generated."
+      },
+      {
+        "control": "From Date / To Date",
+        "explanation": "Use the required date range, at most 31 days per run. Verify roster, policy, calendar and assignment coverage first."
+      },
+      {
+        "control": "Attendance Document Type",
+        "explanation": "Select the configured attendance type used for this organization and workflow."
+      },
+      {
+        "control": "OK / Run as Job",
+        "explanation": "Run only after reviewing the parameters. Job scheduling does not remove setup or access checks."
+      }
+    ],
+    "outcome": "Expected days and missing evidence are available for review. This process does not invent punches, classify absence, approve attendance or process payroll."
   }
 ]

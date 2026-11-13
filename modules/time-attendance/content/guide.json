@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "guide_version": "1.1.2",
+    "guide_version": "1.2.0",
     "date": "2026-11-13",
     "plugin_version": "13.0.0.202611130100",
     "dictionary_name": "SLERPTECHAttendanceCapability",
@@ -10,9 +10,9 @@
     "title": "Time & Attendance",
     "status": "Published user guide",
     "changes": [
-      "Published the HTML guide on GitHub Pages with a stable latest-edition link and retained editions 1.1 and 1.1.1.",
-      "Updated the compatibility baseline to SLERPTECHAttendanceCapability 1.66.0, which fixes the roster column registration order during Pack In.",
-      "Retained the four cropped iDempiere screenshots and their historical example captions."
+      "Added current application screen walkthroughs with field explanations and completion checks.",
+      "Added process diagrams for setup, import, review, corrections, overtime, period close and payroll handoff.",
+      "Added a visual guide index and full-size image viewing; retained all earlier editions."
     ]
   },
   "chapters": [

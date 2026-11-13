@@ -74,5 +74,165 @@
     ],
     "validation": "Exact crop of native-decoded source, no resize or redrawing",
     "sha256": "ead294feb3eeac0fc7b6c099c523b88803e56da519837479190a19c01f8c039b"
+  },
+  {
+    "file": "roster-rotation.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      1409
+    ],
+    "size": [
+      1960,
+      1239
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "bc4f8c1d1c6eb6185bd3e58fe938996e220b515f6b0737d5b290179f435a1cfb"
+  },
+  {
+    "file": "attendance-policy.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      1409
+    ],
+    "size": [
+      1960,
+      1239
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "1d34c17c594add796791c92a17a168517747d601c65d13bd52d25f1d9811a3d9"
+  },
+  {
+    "file": "import-workbench.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      1409
+    ],
+    "size": [
+      1960,
+      1239
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "daea008943c58b5e4fa0e076654854898dd2307a994f6edcfba5eb95715157dd"
+  },
+  {
+    "file": "attendance-reviews.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      1409
+    ],
+    "size": [
+      1960,
+      1239
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "1c46361d795180d4e30ef9c4829010675a50014fd6998f200556cfed2c46d158"
+  },
+  {
+    "file": "period-control.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      1409
+    ],
+    "size": [
+      1960,
+      1239
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "cdd1a9a5193aaedf9982ab7838da647ea6e84e48d14e5fc45092fb373145046c"
+  },
+  {
+    "file": "payroll-handoff.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      1409
+    ],
+    "size": [
+      1960,
+      1239
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "4a1f6a06da86cb984c7b74b90272dfc3aae01faede921a745eb2bd6b768a8877"
+  },
+  {
+    "file": "operations-reports.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      750
+    ],
+    "size": [
+      1960,
+      580
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "fd93c89bffef150cb4b9db5990c379cdc86582f1ca488b39c79693ae0bd80efc"
+  },
+  {
+    "file": "generate-expected.png",
+    "source_size": [
+      2560,
+      1409
+    ],
+    "crop_box": [
+      600,
+      170,
+      2560,
+      1409
+    ],
+    "size": [
+      1960,
+      1239
+    ],
+    "validation": "Cropped with macOS sips, including its native color handling; no resizing or redrawing. Geometry checked against the source and visually inspected.",
+    "capture_date": "2026-11-13",
+    "sha256": "328f407d382d54c447746e432bab2ae8265c03c7afefbf49d654ea3110455d68"
   }
 ]

@@ -36,4 +36,31 @@ document.getElementById('clear-search').addEventListener('click',()=>{search.val
 menuToggle.addEventListener('click',()=>{const open=sidebar.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));});
 links.forEach(a=>a.addEventListener('click',()=>{if(location.hash===a.hash)showHash();}));
 window.addEventListener('hashchange',showHash);showHash();
-document.getElementById('version').addEventListener('change',e=>{location.href=e.target.value;});
+document.getElementById('version').addEventListener('change',e=>{location.href=e.target.value+location.hash;});
+
+// Standard links remain usable when dialog support or JavaScript is unavailable.
+const imageViewer = document.getElementById('image-viewer');
+const imageDetail = document.getElementById('image-detail');
+const imageZoom = document.getElementById('image-zoom');
+const imageCanvas = imageViewer.querySelector('.image-canvas');
+let imageOpener = null;
+if (typeof imageViewer.showModal === 'function') {
+  document.querySelectorAll('a.visual-media').forEach(link => link.addEventListener('click', event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault(); imageOpener = link;
+    const title = link.dataset.title || link.querySelector('img')?.alt || 'Guide image';
+    document.getElementById('image-title').textContent = title;
+    imageDetail.src = link.href; imageDetail.alt = title;
+    document.getElementById('image-original').href = link.href;
+    imageCanvas.classList.remove('actual-size'); imageZoom.textContent = 'Actual size'; imageZoom.setAttribute('aria-pressed','false');
+    imageViewer.showModal(); imageCanvas.scrollTo(0,0); document.getElementById('image-close').focus();
+  }));
+  document.getElementById('image-close').addEventListener('click', () => imageViewer.close());
+  imageViewer.addEventListener('click', event => { if (event.target === imageViewer) imageViewer.close(); });
+  imageViewer.addEventListener('close', () => imageOpener?.focus());
+  imageZoom.addEventListener('click', () => {
+    const actual = imageCanvas.classList.toggle('actual-size');
+    imageZoom.textContent = actual ? 'Fit to window' : 'Actual size';
+    imageZoom.setAttribute('aria-pressed', String(actual)); imageCanvas.scrollTo(0,0);
+  });
+}

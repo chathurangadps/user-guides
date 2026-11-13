@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="461" viewBox="0 0 1000 461" role="img" aria-labelledby="title desc">
+<title id="title">A five-day rotation with an overnight third shift</title>
+<desc id="desc">This is the accepted SLERPTECH IT-operations proposal. Day offsets are relative to the cycle start, not weekday numbers. Assign the appropriate team cycle and effective dates; verify the cycle-start reference. Keep next-day checkout timestamps for night work. Resolve the work date from the reviewed schedule. The proposal includes a one-hour unpaid break, starting four hours after shift start; continuous coverage needs break relief. Review company applicability and night-work requirements before approval and employee assignment.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65748b"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#ffffff"/>
+<g fill="none" stroke="#65748b" stroke-width="2" stroke-linejoin="round">
+<path d="M312,163 L364,163" marker-end="url(#arrow)"/>
+<path d="M636,163 L688,163" marker-end="url(#arrow)"/>
+<path d="M824,226 L824,300" marker-end="url(#arrow)"/>
+<path d="M688,363 L636,363" marker-end="url(#arrow)"/>
+<path d="M364,363 L312,363" marker-end="url(#arrow)"/>
+</g><g font-family="Arial, Helvetica, sans-serif">
+<rect x="40" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="58" y="129" font-size="18" font-weight="700" fill="#352347">Offset 0 · Day</text>
+<text x="58" y="177" font-size="14" fill="#4e5d72">06:00–14:00 · same calendar date</text>
+<rect x="364" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="129" font-size="18" font-weight="700" fill="#352347">Offset 1 · Evening</text>
+<text x="382" y="177" font-size="14" fill="#4e5d72">14:00–22:00 · same calendar date</text>
+<rect x="688" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="129" font-size="18" font-weight="700" fill="#352347">Offset 2 · Night</text>
+<text x="706" y="177" font-size="14" fill="#4e5d72">22:00–06:00 · ends the following</text>
+<text x="706" y="195" font-size="14" fill="#4e5d72">date</text>
+<rect x="688" y="300" width="272" height="126" rx="10" fill="#fff8e9" stroke="#ad8433" stroke-width="1.5"/>
+<text x="706" y="329" font-size="18" font-weight="700" fill="#624c20">Offset 3 · Off</text>
+<text x="706" y="377" font-size="14" fill="#4e5d72">Rest day · no scheduled shift</text>
+<rect x="364" y="300" width="272" height="126" rx="10" fill="#fff8e9" stroke="#ad8433" stroke-width="1.5"/>
+<text x="382" y="329" font-size="18" font-weight="700" fill="#624c20">Offset 4 · Off</text>
+<text x="382" y="377" font-size="14" fill="#4e5d72">Rest day · no scheduled shift</text>
+<rect x="40" y="300" width="272" height="126" rx="10" fill="#eaf6f0" stroke="#39765c" stroke-width="1.5"/>
+<text x="58" y="329" font-size="18" font-weight="700" fill="#23513e">Repeat offset 0</text>
+<text x="58" y="377" font-size="14" fill="#4e5d72">Cycle length: 5 days</text>
+</g></svg>

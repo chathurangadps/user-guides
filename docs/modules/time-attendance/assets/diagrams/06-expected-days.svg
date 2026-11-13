@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="461" viewBox="0 0 1000 461" role="img" aria-labelledby="title desc">
+<title id="title">Find no-punch days without inventing attendance</title>
+<desc id="desc">Expected attendance starts from the employee population and reviewed schedule, not from whoever appears in a CSV. Generate expected attendance for a reviewed organization/date range, up to 31 days per process run. Check working days, roster rest days, holiday classifications and approved full/partial leave. Compare expected days with actual recorded punches, including employees who have none. Resolve setup and evidence issues, then process applicable recalculation and review steps.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#65748b"/></marker></defs>
+<rect width="100%" height="100%" rx="12" fill="#ffffff"/>
+<g fill="none" stroke="#65748b" stroke-width="2" stroke-linejoin="round">
+<path d="M312,163 L364,163" marker-end="url(#arrow)"/>
+<path d="M636,163 L688,163" marker-end="url(#arrow)"/>
+<path d="M824,226 L824,300" marker-end="url(#arrow)"/>
+<path d="M688,363 L636,363" marker-end="url(#arrow)"/>
+<path d="M364,363 L312,363" marker-end="url(#arrow)"/>
+</g><g font-family="Arial, Helvetica, sans-serif">
+<rect x="40" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="58" y="129" font-size="18" font-weight="700" fill="#352347">Choose organization /</text>
+<text x="58" y="152" font-size="18" font-weight="700" fill="#352347">range</text>
+<text x="58" y="177" font-size="14" fill="#4e5d72">HR · include the full intended</text>
+<text x="58" y="195" font-size="14" fill="#4e5d72">scope</text>
+<rect x="364" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="382" y="129" font-size="18" font-weight="700" fill="#352347">Resolve effective setup</text>
+<text x="382" y="177" font-size="14" fill="#4e5d72">Employment, roster, policy,</text>
+<text x="382" y="195" font-size="14" fill="#4e5d72">calendar</text>
+<rect x="688" y="100" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="129" font-size="18" font-weight="700" fill="#352347">Classify the expectation</text>
+<text x="706" y="177" font-size="14" fill="#4e5d72">Workday, rest day, holiday or</text>
+<text x="706" y="195" font-size="14" fill="#4e5d72">leave</text>
+<rect x="688" y="300" width="272" height="126" rx="10" fill="#f5f1fa" stroke="#74539a" stroke-width="1.5"/>
+<text x="706" y="329" font-size="18" font-weight="700" fill="#352347">Compare recorded evidence</text>
+<text x="706" y="377" font-size="14" fill="#4e5d72">Uploaded or saved attendance</text>
+<rect x="364" y="300" width="272" height="126" rx="10" fill="#fff8e9" stroke="#ad8433" stroke-width="1.5"/>
+<text x="382" y="329" font-size="18" font-weight="700" fill="#624c20">Flag gaps for review</text>
+<text x="382" y="377" font-size="14" fill="#4e5d72">Missing evidence is not absence</text>
+<rect x="40" y="300" width="272" height="126" rx="10" fill="#eaf6f0" stroke="#39765c" stroke-width="1.5"/>
+<text x="58" y="329" font-size="18" font-weight="700" fill="#23513e">Recalculate after changes</text>
+<text x="58" y="377" font-size="14" fill="#4e5d72">Refresh affected days and reports</text>
+</g></svg>
